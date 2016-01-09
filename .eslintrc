@@ -1,0 +1,22 @@
+{
+    "env": {
+        "jasmine": true,
+        "node": true,
+        "mocha": true,
+        "browser": true,
+        "builtin": true,
+        "es6": true
+    },
+    "globals": {},
+    "extends": "airbnb/legacy",
+    "rules": {
+        "indent": [2, 4],
+        "comma-dangle": [2, "never"],
+        "new-cap": 0,
+        "id-length": 0,
+        "vars-on-top": 0,
+        "func-names": 0,
+        "space-before-function-paren": 0,
+        "padded-blocks": 0
+    }
+}
