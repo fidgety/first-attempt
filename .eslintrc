@@ -18,5 +18,9 @@
         "func-names": 0,
         "space-before-function-paren": 0,
         "padded-blocks": 0
+    },
+    "ecmaFeatures": {
+        "modules": true,
+        "jsx": true
     }
 }
