@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const passport = require('./passport');
+const authentication = require('./passport');
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({
     layoutsDir: __dirname + '/views/layouts',
@@ -20,8 +20,7 @@ app.use(require('express-session')({
     saveUninitialized: true
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
+authentication(app);
 
 app.get('/', (req, res) => {
     let viewModel = {
@@ -42,15 +41,6 @@ app.get('/', (req, res) => {
 app.get('/login', (req, res) => {
     res.send('welcome');
 });
-
-app.get('/login/twitter',
-    passport.authenticate('twitter'));
-
-app.get('/login/twitter/return',
-    passport.authenticate('twitter', {
-        successReturnToOrRedirect: '/',
-        failureRedirect: '/login'
-    }));
 
 app.listen('3000', () => {
     console.log('server ready and listening on port 3000');
