@@ -4,12 +4,15 @@ const authentication = require('./passport');
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({
     layoutsDir: __dirname + '/views/layouts',
-    partialsDir: __dirname + '/views/partials'
+    partialsDir: __dirname + '/views/partials',
+    defaultLayout: 'main'
 });
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.set('views', __dirname + '/views');
+
+app.use(express.static('public'));
 
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
@@ -22,26 +25,28 @@ app.use(require('express-session')({
 
 authentication(app);
 
-app.get('/', (req, res) => {
-    let viewModel = {
+app.get('*', (req, res) => {
+    let dataToProvide = {
         loggedIn: false
     };
 
     if (req.user) {
-        viewModel = {
+        dataToProvide = {
             username: req.user.displayName,
             photo: req.user.photos[0].value,
             loggedIn: true
         };
     }
 
-    res.render('home', viewModel);
+    res.render('home', {
+        json: JSON.stringify(dataToProvide)
+    });
 });
 
 app.get('/login', (req, res) => {
     res.send('welcome');
 });
 
-app.listen('3000', () => {
+app.listen('3004', () => {
     console.log('server ready and listening on port 3000');
 });

@@ -7,7 +7,9 @@
         "builtin": true,
         "es6": true
     },
-    "globals": {},
+    "globals": {
+        "veloptuous": true
+    },
     "extends": "airbnb/legacy",
     "rules": {
         "indent": [2, 4],
@@ -23,5 +25,8 @@
     "ecmaFeatures": {
         "modules": true,
         "jsx": true
-    }
+    },
+    "plugins": [
+        "react"
+    ]
 }
