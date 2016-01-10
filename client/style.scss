@@ -1,3 +1,35 @@
-h1 {
+body {
+    background: #000;
+}
+
+.logo {
+    width: 300px;
+    margin: 50px auto 0 auto;
+
+    #shape {
+        fill: white;
+    }
+}
+
+.tag-line {
     font-family: 'Lato';
+    font-weight: 200;
+    font-size: 20px;
+    color: white;
+    margin: 5px auto;
+    text-align: center;
+}
+
+.images {
+    width: 100%;
+    overflow: hidden;
+    li {
+        width: 31.33%;
+        padding: 10px 2% 0 0;
+        float: left;
+        img {
+            width: 100%;
+        }
+    }
+
 }

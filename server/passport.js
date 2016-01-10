@@ -1,6 +1,6 @@
 const passport = require('passport');
 const Strategy = require('passport-twitter').Strategy;
-const user = require('./user');
+const userDb = require('./user');
 
 module.exports = function (app) {
     passport.use(new Strategy({
@@ -8,7 +8,7 @@ module.exports = function (app) {
         consumerSecret: process.env.CONSUMER_SECRET,
         callbackURL: 'http://127.0.0.1:3000/login/twitter/return'
     }, (token, tokenSecret, profile, cb) => {
-        user.add(profile);
+        userDb.add(profile);
         return cb(null, profile);
     }));
 
