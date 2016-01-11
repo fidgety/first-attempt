@@ -8,7 +8,8 @@
         "es6": true
     },
     "globals": {
-        "veloptuous": true
+        "veloptuous": true,
+        "google": true
     },
     "extends": "airbnb/legacy",
     "rules": {

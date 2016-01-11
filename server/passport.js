@@ -16,7 +16,7 @@ module.exports = function (app) {
         cb(null, user);
     });
 
-    passport.deserializeUser((obj, cb) =>{
+    passport.deserializeUser((obj, cb) => {
         cb(null, obj);
     });
 
