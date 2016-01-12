@@ -1,5 +1,7 @@
 import React from 'react';
 import mainMapOptions from '../mainMapOptions';
+import store from '../../../store';
+import * as types from '../../../constants/map';
 
 require('./style.scss');
 
@@ -29,8 +31,12 @@ module.exports = React.createClass({
             google.maps.event.addListener(map, 'click', (e) => {
                 if (!timer && !lookupInProgress) {
                     timer = setTimeout(function () {
-                        // lookupInProgress = true;
-                        console.log('map clicked', e.latLng.toString());
+                        lookupInProgress = true;
+
+                        store.dispatch({
+                            type: types.MAP_CLICKED,
+                            latLng: e.latLng
+                        });
 
                         timer = undefined;
                     }, 200);
