@@ -1,5 +1,6 @@
 import React from 'react';
 import mainMapOptions from '../mainMapOptions';
+import Marker from '../../marker';
 
 require('./style.scss');
 
@@ -49,9 +50,18 @@ module.exports = React.createClass({
         });
     },
     render: function () {
+        let markers = this.props.waypoints.map((waypoint) => {
+            return <Marker
+                latLng={waypoint}
+                map={this.state.map}
+                classPrefix="waypoint"
+                key={waypoint.toString()}
+            />
+        });
         return (
             <div id="map">
                 <div id="map-canvas"></div>
+                {markers}
             </div>);
     }
 });

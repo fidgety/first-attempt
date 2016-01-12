@@ -5,7 +5,7 @@ import { findNearestLatLng } from '../../actionCreators/planner';
 
 const select = (state) => {
     return {
-        currentPoint: state.currentPoint
+        waypoints: state.waypoints
     };
 };
 
@@ -13,7 +13,7 @@ export default connect(select)(React.createClass({
     render() {
         return (
             <PlannerMap
-                currentPoint={this.props.currentPoint}
+                waypoints={this.props.waypoints}
                 onLatLngSelected={(latLng) =>
                     this.props.dispatch(findNearestLatLng(latLng))}
             />
