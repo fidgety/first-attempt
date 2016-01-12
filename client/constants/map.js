@@ -1,1 +1,1 @@
-export const MAP_CLICKED = 'map clicked';
+export const LAT_LNG_SELECTED = 'LAT_LNG_SELECTED';

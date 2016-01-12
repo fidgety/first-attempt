@@ -1,10 +1,12 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import createLogger from 'redux-logger';
 import planner from '../reducers/planner';
 
-const store = createStore(planner);
-
-store.subscribe(() => {
-    console.log('storeUpdated', store.getState());
-});
+const createStoreWithMiddleware = applyMiddleware(
+    thunkMiddleware,
+    createLogger()
+)(createStore);
+const store = createStoreWithMiddleware(planner);
 
 export default store;

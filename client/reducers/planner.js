@@ -3,13 +3,15 @@ import * as types from '../constants/map';
 export default (state, action) => {
     if (!state) {
         return {
-            currentPoint: undefined
+            currentPoint: undefined,
+            waypoints: []
         };
     }
 
-    if (action.type === types.MAP_CLICKED) {
+    if (action.type === types.LAT_LNG_SELECTED) {
         return Object.assign({}, state, {
-            currentPoint: action.latLng
+            currentPoint: action.latLng,
+            waypoints: state.waypoints.concat([action.latLng])
         });
     }
 
