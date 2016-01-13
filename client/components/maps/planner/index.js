@@ -5,24 +5,25 @@ import Marker from '../../marker';
 require('./style.scss');
 
 let lookupInProgress = false;
+let map;
 
 module.exports = React.createClass({
-    getInitialState: function () {
+    propTypes: {
+        onLatLngSelected: React.PropTypes.func,
+        waypoints: React.PropTypes.array
+    },
+    getInitialState() {
         return {
             map: undefined
         };
     },
-    componentDidMount: function () {
-        let map = new google.maps.Map(
+    componentDidMount() {
+        map = new google.maps.Map(
             document.getElementById('map-canvas'),
             mainMapOptions
         );
         let timer;
         let onLatLngSelected = this.props.onLatLngSelected;
-
-        this.setState({
-            map: map
-        });
 
         google.maps.event.addListenerOnce(map, 'tilesloaded', () => {
             google.maps.event.addListener(map, 'dragend', () => {
@@ -49,11 +50,11 @@ module.exports = React.createClass({
             });
         });
     },
-    render: function () {
+    render() {
         let markers = this.props.waypoints.map((waypoint) => {
             return <Marker
                 latLng={waypoint}
-                map={this.state.map}
+                map={map}
                 classPrefix="waypoint"
                 key={waypoint.toString()}
             />
