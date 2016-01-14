@@ -23,8 +23,12 @@ export default (state, action) => {
     }
 
     if (action.type === types.DIRECTIONS_FOUND) {
+        let updatedLegs = state.legs.concat([action.latLngs]);
         return Object.assign({}, state, {
-            legs: state.legs.concat([action.latLngs])
+            legs: updatedLegs,
+            route: updatedLegs.reduce((prevLegs, leg) => {
+                return prevLegs.concat(leg);
+            }, [])
         });
     }
 

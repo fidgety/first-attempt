@@ -1,6 +1,7 @@
 import React from 'react';
 import mainMapOptions from '../mainMapOptions';
 import Marker from '../../marker';
+import Polyline from '../../polyline';
 
 require('./style.scss');
 
@@ -59,10 +60,15 @@ module.exports = React.createClass({
                 key={waypoint.toString()}
             />
         });
+
         return (
             <div id="map">
                 <div id="map-canvas"></div>
                 {markers}
+                <Polyline
+                    map={map}
+                    polyline={this.props.route}
+                />
             </div>);
     }
 });
