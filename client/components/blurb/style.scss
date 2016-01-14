@@ -1,30 +1,79 @@
+@import "colours";
+@import "breakpoints";
+
 .logo {
-    width: 300px;
-    margin: 50px auto 0 auto;
+    width: 80%;
+    margin: 120px auto 0 auto;
 
     #shape {
         fill: white;
     }
 }
 
+.topbar {
+    overflow: hidden;
+
+    div {
+        height: 2px;
+        float: left;
+        width: 20%;
+        margin: 9px 0 7px;
+    }
+
+    .a {
+        background: $café;
+    }
+    .b {
+        background: $c;
+    }
+    .c {
+        background: $rouleur;
+    }
+    .d {
+        background: $view;
+    }
+    .e {
+        background: $d;
+    }
+}
+
 .tag-line {
     font-family: 'Lato';
     font-weight: 200;
-    font-size: 20px;
+    line-height: 34px;
+    font-size: 27px;
     color: white;
-    margin: 5px auto;
+    margin: 20px 10%;
     text-align: center;
 }
 
 .images {
-    width: 100%;
-    overflow: hidden;
-    li {
-        width: 31.33%;
-        padding: 10px 2% 0 0;
-        float: left;
-        img {
-            width: 100%;
-        }
+    display: none;
+}
+
+.start-route {
+    margin: 80px auto 0 auto;
+    width: 300px;
+}
+
+@media (min-width: $x-small) {
+    .logo {
+        width: 50%;
+    }
+
+    .tag-line {
+        width: 50%;
+        margin: 20px auto;
+    }
+}
+
+@media (min-width: $small) {
+    .logo {
+        width: 400px;
+    }
+
+    .tag-line {
+        width: 400px;
+        margin: 20px auto;
     }
 }

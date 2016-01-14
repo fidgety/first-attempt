@@ -1,9 +1,18 @@
 .user {
-    float: right;
-    padding: 10px 10px 0 0;
-    color: white;
-
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    height: 40px;
+    
+    span {
+        color: white;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+    
     img {
         border-radius: 9999px;
+        height: 40px;
+        vertical-align: middle;
     }
 }

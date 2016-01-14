@@ -1,9 +1,40 @@
 body {
-    background: #000;
+    background: #191919;
 }
 
 html, body, #app {
     height: 100%;
     margin: 0;
     padding: 0;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: all 0.1s linear;
+}
+
+a:hover {
+    transition: all 0.1s linear;
+    border-bottom-color: white;
+}
+
+.button {
+    cursor: pointer;
+    color: white;
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 9999px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 21px;
+    text-transform: uppercase;
+    transition: all 0.1s linear;
+    display: block;
+}
+
+.button:hover {
+    background: #333;
+    transition: all 0.1s linear;
 }
