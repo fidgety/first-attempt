@@ -7,6 +7,12 @@
     right: 10px;
     top: $top-bar-height + 10px;
     z-index: 10;
+    overflow: hidden;
+
+    .planner-control {
+        float: left;
+        margin-left: 10px;
+    }
 }
 
 @media (min-width: $x-small) {

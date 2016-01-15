@@ -21,6 +21,10 @@ export default connect(select)(React.createClass({
                 <TopBar/>
                 <PlannerControls
                     onUndo={() => this.props.dispatch(undo())}
+                    onSave={() => {
+                        let routeName = window.prompt('Please give your route a name');
+                        alert('will save with name of ' + routeName);
+                    }}
                     routeStarted={this.props.routeStarted}
                 />
                 <PlannerMap
