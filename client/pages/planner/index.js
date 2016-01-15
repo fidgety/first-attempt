@@ -4,12 +4,13 @@ import TopBar from '../../components/topbar';
 import PlannerControls from '../../components/plannerControls';
 
 import { connect } from 'react-redux';
-import { findNearestLatLng } from '../../actionCreators/planner';
+import { findNearestLatLng, undo } from '../../actionCreators/planner';
 
 const select = (state) => {
     return {
         waypoints: state.waypoints,
-        route: state.route
+        route: state.route,
+        routeStarted: state.routeStarted
     };
 };
 
@@ -18,7 +19,10 @@ export default connect(select)(React.createClass({
         return (
             <div className="full-screen">
                 <TopBar/>
-                <PlannerControls/>
+                <PlannerControls
+                    onUndo={() => this.props.dispatch(undo())}
+                    routeStarted={this.props.routeStarted}
+                />
                 <PlannerMap
                     waypoints={this.props.waypoints}
                     route={this.props.route}

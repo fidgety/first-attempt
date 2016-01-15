@@ -1,3 +1,5 @@
+@import "constants";
+
 body {
     background: #191919;
 }
@@ -12,12 +14,16 @@ a {
     color: white;
     text-decoration: none;
     border: 1px solid transparent;
-    transition: all 0.1s linear;
+    transition: $transition-all;
 }
 
 a:hover {
-    transition: all 0.1s linear;
+    transition: $transition-all;
     border-bottom-color: white;
+}
+
+.hidden {
+    display: none;
 }
 
 .button {
@@ -30,11 +36,11 @@ a:hover {
     line-height: 50px;
     font-size: 21px;
     text-transform: uppercase;
-    transition: all 0.1s linear;
+    transition: $transition-all;
     display: block;
 }
 
 .button:hover {
     background: #333;
-    transition: all 0.1s linear;
+    transition: $transition-all;
 }

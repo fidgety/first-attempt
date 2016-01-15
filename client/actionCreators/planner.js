@@ -1,4 +1,4 @@
-import * as types from '../constants/map';
+import * as types from '../constants';
 import snapToRoute from '../utils/maps/snapToRoute';
 import getDirections from '../utils/maps/getDirections';
 import routeToLatLngs from '../utils/maps/routeToLatLngs';

@@ -1,4 +1,4 @@
-import * as types from '../constants/map';
+import * as types from '../constants';
 import store from '../store';
 import { findRoute } from '../actionCreators/planner';
 
@@ -12,7 +12,9 @@ export default (state, action) => {
         return {
             currentPoint: undefined,
             waypoints: [],
-            legs: []
+            legs: [],
+            route: [],
+            routeStarted: false
         };
     }
 
@@ -21,9 +23,13 @@ export default (state, action) => {
             let endOfCurrentRoute = state.waypoints[state.waypoints.length - 1];
             store.dispatch(findRoute(endOfCurrentRoute, action.latLng));
         }
+
+        let waypoints = state.waypoints.concat([action.latLng]);
+
         return Object.assign({}, state, {
             currentPoint: action.latLng,
-            waypoints: state.waypoints.concat([action.latLng])
+            waypoints,
+            routeStarted: waypoints.length !== 0
         });
     }
 
@@ -46,7 +52,8 @@ export default (state, action) => {
             currentPoint,
             waypoints,
             legs,
-            route: buildFullRoute(legs)
+            route: buildFullRoute(legs),
+            routeStarted: waypoints.length !== 0
         });
     }
 

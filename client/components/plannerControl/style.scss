@@ -1,0 +1,25 @@
+@import "constants";
+
+.planner-control {
+    background: rgba(0,0,0,0.8);
+    height: 70px;
+    width: 70px;
+    border-radius: 9999px;
+    line-height: 70px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    transition: $transition-all;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.planner-control:hover {
+    background: rgba(0,0,0,1);
+    transition: $transition-all;
+}
+
+.planner-control.disabled {
+    background: rgba(0,0,0,0.3);
+    transition: $transition-all;
+}
