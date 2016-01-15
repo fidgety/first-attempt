@@ -35,14 +35,12 @@ export default (state, action) => {
         });
     }
 
-    if (action.type == types.UNDO) {
+    if (action.type === types.UNDO) {
         let waypoints = state.waypoints.concat([]);
         let legs = state.legs.concat([]);
-        console.log(waypoints)
         waypoints.pop();
-        console.log(waypoints)
         legs.pop();
-        let currentPoint = waypoints[waypoints.length-1];
+        let currentPoint = waypoints[waypoints.length - 1];
 
         return Object.assign({}, state, {
             currentPoint,

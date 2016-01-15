@@ -1,0 +1,13 @@
+@import "colours";
+@import "breakpoints";
+
+.planner-controls {
+    position: absolute;
+    right: 10px;
+    top: $top-bar-height + 10px;
+    z-index: 10;
+}
+
+@media (min-width: $x-small) {
+
+}

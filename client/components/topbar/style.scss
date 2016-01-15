@@ -1,0 +1,39 @@
+@import "colours";
+@import "breakpoints";
+@import "constants";
+
+.top-bar {
+    position: absolute;
+    background: rgba(0,0,0,0.8);
+    width: 100%;
+    height: $top-bar-height;
+    z-index: 10;
+}
+
+.top-bar__user {
+    .user {
+        top: 5px;
+        span {
+            display: none;
+        }
+    }
+}
+
+.top-bar__logo {
+    width: 145px;
+    margin: 5px auto;
+
+    #shape {
+        fill: white;
+    }
+}
+
+@media (min-width: $x-small) {
+    .top-bar__user {
+        .user {
+            span {
+                display: inline;
+            }
+        }
+    }
+}
