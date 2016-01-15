@@ -2,6 +2,11 @@ import * as types from '../constants/map';
 import store from '../store';
 import { findRoute } from '../actionCreators/planner';
 
+function buildFullRoute(legs) {
+    return legs.reduce((prevLegs, leg) => {
+        return prevLegs.concat(leg);
+    }, []);
+}
 export default (state, action) => {
     if (!state) {
         return {
@@ -26,9 +31,24 @@ export default (state, action) => {
         let updatedLegs = state.legs.concat([action.latLngs]);
         return Object.assign({}, state, {
             legs: updatedLegs,
-            route: updatedLegs.reduce((prevLegs, leg) => {
-                return prevLegs.concat(leg);
-            }, [])
+            route: buildFullRoute(updatedLegs)
+        });
+    }
+
+    if (action.type == types.UNDO) {
+        let waypoints = state.waypoints.concat([]);
+        let legs = state.legs.concat([]);
+        console.log(waypoints)
+        waypoints.pop();
+        console.log(waypoints)
+        legs.pop();
+        let currentPoint = waypoints[waypoints.length-1];
+
+        return Object.assign({}, state, {
+            currentPoint,
+            waypoints,
+            legs,
+            route: buildFullRoute(legs)
         });
     }
 

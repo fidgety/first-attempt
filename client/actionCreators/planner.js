@@ -29,6 +29,12 @@ export const directionsFound = (latLngs) => {
     };
 };
 
+export const undo = () => {
+    return {
+        type: types.UNDO
+    }
+};
+
 export const findNearestLatLng = (latLng) => {
     return (dispatch) => {
         // dispatch(latLngLookupStarted());
