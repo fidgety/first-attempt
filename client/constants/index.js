@@ -5,3 +5,4 @@ export const DIRECTIONS_FOUND = 'DIRECTIONS_FOUND';
 
 // user controls
 export const UNDO = 'UNDO';
+export const ROUTE_SAVED = 'ROUTE_SAVED';

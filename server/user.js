@@ -1,11 +1,4 @@
-const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017/veloptuous';
-
-let users;
-
-MongoClient.connect(url, function(err, db) {
-    users = db.collection('users');
-});
+const db = require('./db');
 
 function buildUserObject(user) {
     return {
@@ -15,7 +8,9 @@ function buildUserObject(user) {
         type: 'twitter'
     };
 }
+
 function add(user) {
+    let users = db().users;
     users.findOne({
         username: user.username
     }, (err, foundUser) => {

@@ -28,7 +28,12 @@ app.use(require('express-session')({
 authentication(app);
 api(app);
 
-app.get('*', (req, res) => {
+const rememberLastUrlForPassportRedirect = (req, res, next) => {
+    req.session.returnTo = req.url;
+    next();
+};
+
+app.get('*', rememberLastUrlForPassportRedirect, (req, res) => {
     let dataToProvide = {
         loggedIn: false
     };

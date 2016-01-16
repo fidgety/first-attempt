@@ -21,7 +21,7 @@ export default React.createClass({
                 <PlannerControl
                     onClick={this.props.onSave}
                     text="save"
-                    enabled={this.props.routeStarted}
+                    enabled={this.props.routeStarted && !this.props.routeSaved}
                 />
             </div>
         </div>;

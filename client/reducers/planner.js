@@ -14,7 +14,8 @@ export default (state, action) => {
             waypoints: [],
             legs: [],
             route: [],
-            routeStarted: false
+            routeStarted: false,
+            routeSaved: false
         };
     }
 
@@ -29,7 +30,8 @@ export default (state, action) => {
         return Object.assign({}, state, {
             currentPoint: action.latLng,
             waypoints,
-            routeStarted: waypoints.length !== 0
+            routeStarted: waypoints.length !== 0,
+            routeSaved: false
         });
     }
 
@@ -53,7 +55,14 @@ export default (state, action) => {
             waypoints,
             legs,
             route: buildFullRoute(legs),
-            routeStarted: waypoints.length !== 0
+            routeStarted: waypoints.length !== 0,
+            routeSaved: false
+        });
+    }
+
+    if (action.type === types.ROUTE_SAVED) {
+        return Object.assign({}, state, {
+            routeSaved: true
         });
     }
 
