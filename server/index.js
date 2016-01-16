@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const authentication = require('./passport');
+const api = require('./api');
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({
     layoutsDir: __dirname + '/views/layouts',
@@ -16,6 +17,7 @@ app.use(express.static('public'));
 
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('body-parser').json());
 app.use(require('express-session')({
     name: 'veloptuous-user',
     secret: 'ssssshhhhhhh',
@@ -24,6 +26,7 @@ app.use(require('express-session')({
 }));
 
 authentication(app);
+api(app);
 
 app.get('*', (req, res) => {
     let dataToProvide = {
