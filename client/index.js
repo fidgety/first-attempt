@@ -9,6 +9,7 @@ import store from './store';
 
 import Home from './pages/home';
 import Planner from './pages/planner';
+import RouteOverview from './pages/route';
 
 require('./reset.scss');
 require('./style.scss');
@@ -18,6 +19,7 @@ ReactDOM.render((
         <Router history={history}>
             <Route path="/" component={Home}/>
             <Route path="/planner" component={Planner}/>
+            <Route path="/route/:routeName" component={RouteOverview}/>
         </Router>
     </Provider>
 ), document.getElementById('app'));

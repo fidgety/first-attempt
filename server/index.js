@@ -12,7 +12,7 @@ const rememberLastUrlForPassportRedirect = (req, res, next) => {
     next();
 };
 
-app.get('*', rememberLastUrlForPassportRedirect, (req, res) => {
+const userDetails = (req, res, next) => {
     let userInformation = {
         loggedIn: false
     };
@@ -25,9 +25,23 @@ app.get('*', rememberLastUrlForPassportRedirect, (req, res) => {
         };
     }
 
-    res.render('dataForClient', {
+    res.locals.clientData = {
         user: JSON.stringify(userInformation)
-    });
+    };
+
+    next();
+};
+
+app.get('/', userDetails, rememberLastUrlForPassportRedirect, (req, res) => {
+    res.render('dataForClient', res.locals.clientData);
+});
+
+app.get('/planner', userDetails, rememberLastUrlForPassportRedirect, (req, res) => {
+    res.render('dataForClient', res.locals.clientData);
+});
+
+app.get('/route/:routeName', userDetails, rememberLastUrlForPassportRedirect, (req, res) => {
+    res.render('dataForClient', res.locals.clientData);
 });
 
 app.listen('3004', () => {
