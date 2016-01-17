@@ -1,4 +1,4 @@
-const db = require('../db');
+const routesDB = require('../dataLayer/routes');
 const extend = require('extend');
 
 const checkAuthenticated = (req, res, next) => {
@@ -10,37 +10,29 @@ const checkAuthenticated = (req, res, next) => {
 
 module.exports = (app) => {
     app.get('/api/route/:routeName', (req, res) => {
-        const routes = db().routes;
-
-        routes.findOne({
-            name: req.params.routeName
-        }, (err, foundRoute) => {
-            if (err) {
-                console.log('cant find route ' + req.params.routeName, err);
-                res.sendStatus(404);
-            }
-            res.json(foundRoute);
+        routesDB.get(req.params.routeName).then((route) => {
+            res.json(route);
+        }).catch((err) => {
+            console.log('cant find route ' + req.params.routeName, err);
+            res.sendStatus(404);
         });
     });
 
     app.post('/api/route/:routeName', checkAuthenticated, (req, res) => {
-        const routes = db().routes;
+
+        const routeName = req.params.routeName;
         const user = req.user.username;
         const record = extend(req.body, {
             user: user,
             name: req.params.name
         });
 
-        routes.update({
-            name: req.params.routeName
-        }, record, {
-            upsert: true
-        }).then((response) => {
-            if (!response.result.ok) {
-                console.log('cant add route ' + req.params.routeName);
-                res.sendStatus(500);
-            }
+        routesDB.save(routeName, record).then(() => {
             res.sendStatus(200);
+        }).catch((err) => {
+            console.log('cant add route ' + req.params.routeName, err);
+            res.sendStatus(500);
         });
+
     });
 };

@@ -2,46 +2,26 @@ const app = require('express')();
 const authentication = require('./passport');
 const api = require('./api');
 const expressSetup = require('./middleware/expressSetup');
+const commonMiddleWare = require('./middleware/common');
+const routes = require('./dataLayer/routes');
 
 expressSetup(app);
 authentication(app);
 api(app);
 
-const rememberLastUrlForPassportRedirect = (req, res, next) => {
-    req.session.returnTo = req.url;
-    next();
-};
-
-const userDetails = (req, res, next) => {
-    let userInformation = {
-        loggedIn: false
-    };
-
-    if (req.user) {
-        userInformation = {
-            username: req.user.displayName,
-            photo: req.user.photos[0].value,
-            loggedIn: true
-        };
-    }
-
-    res.locals.clientData = {
-        user: JSON.stringify(userInformation)
-    };
-
-    next();
-};
-
-app.get('/', userDetails, rememberLastUrlForPassportRedirect, (req, res) => {
+app.get('/', commonMiddleWare, (req, res) => {
     res.render('dataForClient', res.locals.clientData);
 });
 
-app.get('/planner', userDetails, rememberLastUrlForPassportRedirect, (req, res) => {
+app.get('/planner', commonMiddleWare, (req, res) => {
     res.render('dataForClient', res.locals.clientData);
 });
 
-app.get('/route/:routeName', userDetails, rememberLastUrlForPassportRedirect, (req, res) => {
-    res.render('dataForClient', res.locals.clientData);
+app.get('/route/:routeName', commonMiddleWare, (req, res) => {
+    routes.get(req.params.routeName).then((route) => {
+        res.locals.clientData.route = JSON.stringify(route);
+        res.render('dataForClient', res.locals.clientData);
+    });
 });
 
 app.listen('3004', () => {

@@ -1,6 +1,6 @@
 const passport = require('passport');
 const Strategy = require('passport-twitter').Strategy;
-const userDb = require('./user');
+const userDb = require('./dataLayer/users');
 
 module.exports = function (app) {
     passport.use(new Strategy({
