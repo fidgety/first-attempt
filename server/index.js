@@ -1,30 +1,9 @@
-const express = require('express');
-const app = express();
+const app = require('express')();
 const authentication = require('./passport');
 const api = require('./api');
-const exphbs = require('express-handlebars');
-const hbs = exphbs.create({
-    layoutsDir: __dirname + '/views/layouts',
-    partialsDir: __dirname + '/views/partials',
-    defaultLayout: 'main'
-});
+const expressSetup = require('./middleware/expressSetup');
 
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
-app.set('views', __dirname + '/views');
-
-app.use(express.static('public'));
-
-app.use(require('cookie-parser')());
-app.use(require('body-parser').urlencoded({ extended: true }));
-app.use(require('body-parser').json());
-app.use(require('express-session')({
-    name: 'veloptuous-user',
-    secret: 'ssssshhhhhhh',
-    resave: false,
-    saveUninitialized: true
-}));
-
+expressSetup(app);
 authentication(app);
 api(app);
 
@@ -34,25 +13,21 @@ const rememberLastUrlForPassportRedirect = (req, res, next) => {
 };
 
 app.get('*', rememberLastUrlForPassportRedirect, (req, res) => {
-    let dataToProvide = {
+    let userInformation = {
         loggedIn: false
     };
 
     if (req.user) {
-        dataToProvide = {
+        userInformation = {
             username: req.user.displayName,
             photo: req.user.photos[0].value,
             loggedIn: true
         };
     }
 
-    res.render('home', {
-        json: JSON.stringify(dataToProvide)
+    res.render('dataForClient', {
+        user: JSON.stringify(userInformation)
     });
-});
-
-app.get('/login', (req, res) => {
-    res.send('welcome');
 });
 
 app.listen('3004', () => {

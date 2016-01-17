@@ -9,7 +9,7 @@ const checkAuthenticated = (req, res, next) => {
 };
 
 module.exports = (app) => {
-    app.get('/api/route/:routeName', checkAuthenticated, (req, res) => {
+    app.get('/api/route/:routeName', (req, res) => {
         const routes = db().routes;
 
         routes.findOne({

@@ -31,4 +31,8 @@ module.exports = function (app) {
         successReturnToOrRedirect: '/',
         failureRedirect: '/login'
     }));
+
+    app.get('/login', (req, res) => {
+        res.send('welcome');
+    });
 };
