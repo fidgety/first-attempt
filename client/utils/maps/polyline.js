@@ -30,10 +30,10 @@ export const distance = (polyline) => {
     return calcDistance(polyline);
 };
 
-export const toBounds = (polyline) => {
-    if (polyline) {
+export const toBounds = (latLngs) => {
+    if (latLngs) {
         let bounds = new gBound();
-        polyline.getPath().getArray().forEach(latLng => bounds.extend(latLng));
+        latLngs.forEach(latLng => bounds.extend(latLng));
 
         return bounds;
     }

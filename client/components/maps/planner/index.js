@@ -6,12 +6,12 @@ import Polyline from '../../polyline';
 require('./style.scss');
 
 let lookupInProgress = false;
-let map;
 
 module.exports = React.createClass({
     propTypes: {
         onLatLngSelected: React.PropTypes.func,
-        waypoints: React.PropTypes.array
+        waypoints: React.PropTypes.array,
+        route: React.PropTypes.array
     },
     getInitialState() {
         return {
@@ -19,10 +19,14 @@ module.exports = React.createClass({
         };
     },
     componentDidMount() {
-        map = new google.maps.Map(
+        let map = new google.maps.Map(
             document.getElementById('map-canvas'),
             mainMapOptions
         );
+        this.setState({
+            map
+        });
+
         let timer;
         let onLatLngSelected = this.props.onLatLngSelected;
 
@@ -52,6 +56,8 @@ module.exports = React.createClass({
         });
     },
     render() {
+        let map = this.state.map;
+
         let markers = this.props.waypoints.map((waypoint) => {
             return <Marker
                 latLng={waypoint}
