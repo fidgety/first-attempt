@@ -2,6 +2,10 @@ import * as types from '../constants';
 import snapToRoute from '../utils/maps/snapToRoute';
 import getDirections from '../utils/maps/getDirections';
 import routeToLatLngs from '../utils/maps/routeToLatLngs';
+import getLatLngsForElevationLookup from '../utils/maps/sampleLatLngsFromRoute';
+import getElevationsForLatLngs from '../utils/maps/elevations';
+
+const sampleRate = 1000;
 
 export const latLngSelected = (latLng) => {
     return {
@@ -35,6 +39,13 @@ export const undo = () => {
     };
 };
 
+export const elevationsUpdated = (elevations) => {
+    return {
+        type: types.ELEVATIONS_UPDATED,
+        elevations
+    };
+};
+
 export const findNearestLatLng = (latLng) => {
     return (dispatch) => {
         // dispatch(latLngLookupStarted());
@@ -45,10 +56,21 @@ export const findNearestLatLng = (latLng) => {
     };
 };
 
+export const getElevationsForLeg = (latLngs) => {
+    return (dispatch) => {
+        let latLngsForLookup = getLatLngsForElevationLookup(latLngs, 0, sampleRate); //eslint-disable-line
+        getElevationsForLatLngs(latLngsForLookup).then((elevations) => {
+            dispatch(elevationsUpdated(elevations));
+        });
+    };
+};
+
 export const findRoute = (startLatLng, endLatLng) => {
     return (dispatch) => {
         getDirections(startLatLng, endLatLng).then((route) => {
-            dispatch(directionsFound(routeToLatLngs(route)));
+            let routeLatLngs = routeToLatLngs(route);
+            dispatch(directionsFound(routeLatLngs));
+            dispatch(getElevationsForLeg(routeLatLngs));
         });
     };
 };

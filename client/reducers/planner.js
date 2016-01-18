@@ -15,7 +15,8 @@ export default (state, action) => {
             legs: [],
             route: [],
             routeStarted: false,
-            routeSaved: false
+            routeSaved: false,
+            elevations: []
         };
     }
 
@@ -46,8 +47,10 @@ export default (state, action) => {
     if (action.type === types.UNDO) {
         let waypoints = state.waypoints.concat([]);
         let legs = state.legs.concat([]);
+        let elevations = state.elevations.concat([]);
         waypoints.pop();
         legs.pop();
+        elevations.pop();
         let currentPoint = waypoints[waypoints.length - 1];
 
         return Object.assign({}, state, {
@@ -56,7 +59,14 @@ export default (state, action) => {
             legs,
             route: buildFullRoute(legs),
             routeStarted: waypoints.length !== 0,
-            routeSaved: false
+            routeSaved: false,
+            elevations
+        });
+    }
+
+    if (action.type === types.ELEVATIONS_UPDATED) {
+        return Object.assign({}, state, {
+            elevations: state.elevations.concat([action.elevations])
         });
     }
 
