@@ -69,13 +69,13 @@ export default (state, action) => {
     }
 
     if (action.type === types.UNDO) {
-        const route = buildFullRoute(legs);
         let waypoints = state.waypoints.concat([]);
         let legs = state.legs.concat([]);
         let elevations = state.elevations.concat([]);
         waypoints.pop();
         legs.pop();
         elevations.pop();
+        const route = buildFullRoute(legs);
         let currentPoint = waypoints[waypoints.length - 1];
 
         return Object.assign({}, state, {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pie } from 'react-chartjs';
+var tweenState = require('react-tween-state');
 
 require('./style.scss');
 
@@ -11,6 +12,18 @@ let options = {
 };
 
 export default React.createClass({
+    mixins: [tweenState.Mixin],
+    getInitialState() {
+        return {
+            distance: 0
+        }
+    },
+    componentWillReceiveProps(nextProps) {
+        this.tweenState('distance', {
+            duration: 300,
+            endValue: Math.floor(nextProps.distance / 1000)
+        });
+    },
     render() {
         const data = [
             {
@@ -36,7 +49,7 @@ export default React.createClass({
         return (<div className="summary-chart">
             <Pie data={data} options={options}/>
             <div className="summary-chart__distance">
-            {Math.floor(this.props.distance / 1000)}
+                {parseInt(this.getTweeningValue('distance'), 10)}
                 <span className="summary-chart__unit">km</span>
             </div>
         </div>);
