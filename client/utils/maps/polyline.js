@@ -26,9 +26,7 @@ export const decode = (encodedPath) => {
     return decodePath(encodedPath);
 };
 
-export const distance = (polyline) => {
-    return calcDistance(polyline);
-};
+export const calculateDistance = calcDistance;
 
 export const toBounds = (latLngs) => {
     if (latLngs) {

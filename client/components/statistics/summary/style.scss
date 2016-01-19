@@ -14,3 +14,22 @@
         height: 150px;
     }
 }
+
+.summary-chart__distance {
+    position: absolute;
+    height: 90px;
+    width: 100px;
+    top: 55px;
+    width: 90px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 9999px;
+    color: white;
+    line-height: 90px;
+    left: 55px;
+    font-size: 26px;
+}
+
+.summary-chart__unit {
+    font-size: 16px;
+}

@@ -14,7 +14,8 @@ const select = (state) => {
         route: state.route,
         routeStarted: state.routeStarted,
         routeSaved: state.routeSaved,
-        statistics: state.elevationStatistics
+        elevationStatistics: state.elevationStatistics,
+        routeStatistics: state.routeStatistics
     };
 };
 
@@ -33,9 +34,10 @@ export default connect(select)(React.createClass({
                     routeStarted={this.props.routeStarted}
                 />
                 <Summary
-                    uphill={this.props.statistics.uphill}
-                    downhill={this.props.statistics.downhill}
-                    flatish={this.props.statistics.flatish}
+                    uphill={this.props.elevationStatistics.uphill}
+                    downhill={this.props.elevationStatistics.downhill}
+                    flatish={this.props.elevationStatistics.flatish}
+                    distance={this.props.routeStatistics.distance}
                 />
                 <PlannerMap
                     waypoints={this.props.waypoints}

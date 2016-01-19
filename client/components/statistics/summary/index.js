@@ -5,7 +5,7 @@ require('./style.scss');
 
 let options = {
     segmentShowStroke: false,
-    percentageInnerCutout: 70,
+    percentageInnerCutout: 50,
     animationEasing: 'easeOutQuart',
     animationSteps: 40
 };
@@ -15,7 +15,7 @@ export default React.createClass({
         const data = [
             {
                 value: this.props.uphill || 1,
-                color:'#FF6339',
+                color: '#FF6339',
                 highlight: '#FF5A5E',
                 label: 'ascending'
             },
@@ -35,6 +35,10 @@ export default React.createClass({
 
         return (<div className="summary-chart">
             <Pie data={data} options={options}/>
+            <div className="summary-chart__distance">
+            {Math.floor(this.props.distance / 1000)}
+                <span className="summary-chart__unit">km</span>
+            </div>
         </div>);
     }
 });

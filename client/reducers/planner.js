@@ -2,6 +2,7 @@ import * as types from '../constants';
 import store from '../store';
 import { findRoute } from '../actionCreators/planner';
 import elevationStats from '../utils/statistics/elevation';
+import { calculateDistance } from '../utils/maps/polyline';
 
 const buildFullRoute = (legs) => {
     return legs.reduce((prevLegs, leg) => {
@@ -32,6 +33,9 @@ export default (state, action) => {
                 uphill: 0,
                 downhill: 0,
                 flatish: 0
+            },
+            routeStatistics: {
+                distance: 0
             }
         };
     }
@@ -54,13 +58,18 @@ export default (state, action) => {
 
     if (action.type === types.DIRECTIONS_FOUND) {
         let updatedLegs = state.legs.concat([action.latLngs]);
+        const route =buildFullRoute(updatedLegs);
         return Object.assign({}, state, {
             legs: updatedLegs,
-            route: buildFullRoute(updatedLegs)
+            route,
+            routeStatistics: {
+                distance: calculateDistance(route)
+            }
         });
     }
 
     if (action.type === types.UNDO) {
+        const route = buildFullRoute(legs);
         let waypoints = state.waypoints.concat([]);
         let legs = state.legs.concat([]);
         let elevations = state.elevations.concat([]);
@@ -73,11 +82,14 @@ export default (state, action) => {
             currentPoint,
             waypoints,
             legs,
-            route: buildFullRoute(legs),
+            route,
             routeStarted: waypoints.length !== 0,
             routeSaved: false,
             elevations,
-            elevationStatistics: calculateElevationStatistics(elevations)
+            elevationStatistics: calculateElevationStatistics(elevations),
+            routeStatistics: {
+                distance: calculateDistance(route)
+            }
         });
     }
 
