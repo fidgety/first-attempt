@@ -2,6 +2,7 @@ import React from 'react';
 import PlannerMap from '../../components/maps/planner';
 import TopBar from '../../components/topbar';
 import PlannerControls from '../../components/plannerControls';
+import Summary from '../../components/statistics/summary';
 
 import { connect } from 'react-redux';
 import { findNearestLatLng, undo } from '../../actionCreators/planner';
@@ -12,7 +13,8 @@ const select = (state) => {
         waypoints: state.waypoints,
         route: state.route,
         routeStarted: state.routeStarted,
-        routeSaved: state.routeSaved
+        routeSaved: state.routeSaved,
+        statistics: state.elevationStatistics
     };
 };
 
@@ -29,6 +31,11 @@ export default connect(select)(React.createClass({
                     }}
                     routeSaved={this.props.routeSaved}
                     routeStarted={this.props.routeStarted}
+                />
+                <Summary
+                    uphill={this.props.statistics.uphill}
+                    downhill={this.props.statistics.downhill}
+                    flatish={this.props.statistics.flatish}
                 />
                 <PlannerMap
                     waypoints={this.props.waypoints}

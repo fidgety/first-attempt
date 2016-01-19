@@ -1,12 +1,18 @@
 import * as types from '../constants';
 import store from '../store';
 import { findRoute } from '../actionCreators/planner';
+import calculateElevationStatistics from '../utils/statistics/elevation';
 
-function buildFullRoute(legs) {
+const buildFullRoute = (legs) => {
     return legs.reduce((prevLegs, leg) => {
         return prevLegs.concat(leg);
     }, []);
-}
+};
+
+const flattenArray = (array) => {
+    return [].concat.apply([], array);
+};
+
 export default (state, action) => {
     if (!state) {
         return {
@@ -16,7 +22,12 @@ export default (state, action) => {
             route: [],
             routeStarted: false,
             routeSaved: false,
-            elevations: []
+            elevations: [],
+            elevationStatistics: {
+                uphill: 0,
+                downhill: 0,
+                flatish: 0
+            }
         };
     }
 
@@ -65,8 +76,11 @@ export default (state, action) => {
     }
 
     if (action.type === types.ELEVATIONS_UPDATED) {
+        let elevationsPerLeg = state.elevations.concat([action.elevations]);
+        let elevations = flattenArray(elevationsPerLeg);
         return Object.assign({}, state, {
-            elevations: state.elevations.concat([action.elevations])
+            elevations: elevationsPerLeg,
+            elevationStatistics: calculateElevationStatistics(elevations)
         });
     }
 

@@ -6,7 +6,7 @@ export default (samplePoints) => {
             locations: samplePoints
         }, (results, status) => {
             if (status === google.maps.ElevationStatus.OK) {
-                resolve(results);
+                return resolve(results);
             }
 
             console.log('bad response from elevations service', samplePoints, results, status);
