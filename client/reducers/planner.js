@@ -4,6 +4,10 @@ import { findRoute } from '../actionCreators/planner';
 import elevationStats from '../utils/statistics/elevation';
 import { calculateDistance } from '../utils/maps/polyline';
 
+const flattenArray = (array) => {
+    return [].concat.apply([], array);
+};
+
 const buildFullRoute = (legs) => {
     return legs.reduce((prevLegs, leg) => {
         return prevLegs.concat(leg);
@@ -13,10 +17,6 @@ const buildFullRoute = (legs) => {
 const calculateElevationStatistics = (elevationsPerLeg) => {
     let elevations = flattenArray(elevationsPerLeg);
     return elevationStats(elevations);
-};
-
-const flattenArray = (array) => {
-    return [].concat.apply([], array);
 };
 
 export default (state, action) => {
@@ -58,7 +58,7 @@ export default (state, action) => {
 
     if (action.type === types.DIRECTIONS_FOUND) {
         let updatedLegs = state.legs.concat([action.latLngs]);
-        const route =buildFullRoute(updatedLegs);
+        const route = buildFullRoute(updatedLegs);
         return Object.assign({}, state, {
             legs: updatedLegs,
             route,

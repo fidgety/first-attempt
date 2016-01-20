@@ -20,7 +20,7 @@ export default React.createClass({
     },
     componentWillReceiveProps(nextProps) {
         this.tweenState('distance', {
-            duration: 300,
+            duration: 500,
             endValue: Math.floor(nextProps.distance / 1000)
         });
     },

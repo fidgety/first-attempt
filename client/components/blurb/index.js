@@ -1,5 +1,6 @@
 import React from 'react';
 import Logo from '../logo';
+import ColourBar from '../colourBar'
 
 require('./style.scss');
 
@@ -8,13 +9,7 @@ export default React.createClass({
         return <div>
             <div className="logo">
                 <Logo/>
-                <div className="topbar">
-                    <div className="a"></div>
-                    <div className="b"></div>
-                    <div className="c"></div>
-                    <div className="d"></div>
-                    <div className="e"></div>
-                </div>
+                <ColourBar/>
             </div>
             <div className="tag-line">A cycling route guide to help you make the most enjoyable rides in the Peak District.</div>
             <a className="button start-route" href="/planner">Start a route</a>

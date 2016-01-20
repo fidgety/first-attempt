@@ -1,0 +1,28 @@
+@import 'colours';
+
+.colour-bar {
+    overflow: hidden;
+
+    div {
+        height: 2px;
+        float: left;
+        width: 20%;
+        margin: 9px 0 7px;
+    }
+
+    .colour-bar__a {
+        background: $café;
+    }
+    .colour-bar__b {
+        background: $c;
+    }
+    .colour-bar__c {
+        background: $rouleur;
+    }
+    .colour-bar__d {
+        background: $view;
+    }
+    .colour-bar__e {
+        background: $d;
+    }
+}

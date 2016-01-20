@@ -10,33 +10,6 @@
     }
 }
 
-.topbar {
-    overflow: hidden;
-
-    div {
-        height: 2px;
-        float: left;
-        width: 20%;
-        margin: 9px 0 7px;
-    }
-
-    .a {
-        background: $café;
-    }
-    .b {
-        background: $c;
-    }
-    .c {
-        background: $rouleur;
-    }
-    .d {
-        background: $view;
-    }
-    .e {
-        background: $d;
-    }
-}
-
 .tag-line {
     font-family: 'Lato';
     font-weight: 200;
