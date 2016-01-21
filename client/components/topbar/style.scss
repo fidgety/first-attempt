@@ -13,9 +13,6 @@
 .top-bar__user {
     .user {
         top: 5px;
-        span {
-            display: none;
-        }
         a {
             display: block;
             padding-top: 10px;
@@ -38,14 +35,4 @@
     height: 10px;
     width: 100%;
     z-index: 10;
-}
-
-@media (min-width: $x-small) {
-    .top-bar__user {
-        .user {
-            span {
-                display: inline;
-            }
-        }
-    }
 }

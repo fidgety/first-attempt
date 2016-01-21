@@ -12,8 +12,8 @@
 
     canvas {
         margin: 5px 0 0 5px;
-        width: 140px;
-        height: 140px;
+        width: 140px !important;
+        height: 140px !important;
     }
 }
 
@@ -35,7 +35,7 @@
     font-size: 16px;
 }
 
-@media (min-width: $small) {
+@media (min-width: $x-small) {
     .summary-chart {
         height: 180px;
         width: 180px;

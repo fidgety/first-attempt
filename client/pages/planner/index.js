@@ -3,6 +3,7 @@ import PlannerMap from '../../components/maps/planner';
 import TopBar from '../../components/topbar';
 import PlannerControls from '../../components/plannerControls';
 import Summary from '../../components/statistics/summary';
+import HighlightSummary from '../../components/highlightSummary';
 
 import { connect } from 'react-redux';
 import { findNearestLatLng, undo } from '../../actionCreators/planner';
@@ -39,6 +40,7 @@ export default connect(select)(React.createClass({
                     flatish={this.props.elevationStatistics.flatish}
                     distance={this.props.routeStatistics.distance}
                 />
+                <HighlightSummary/>
                 <PlannerMap
                     waypoints={this.props.waypoints}
                     route={this.props.route}
