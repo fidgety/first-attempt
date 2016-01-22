@@ -8,6 +8,10 @@
     background: rgba(0, 0, 0, 0.6);
     z-index: 20;
     position: absolute;
+
+    &_hidden {
+        display: none;
+    }
 }
 
 .highlight-sidebar {
@@ -85,11 +89,16 @@
 
 .highlight-sidebar__info {
     color: white;
-    padding: 20px 10px;
+    padding: 10px 10px 0 10px;
 
     .key {
         font-weight: 100;
         text-transform: uppercase;
+        padding: 5px 10px 0 0;
+    }
+
+    .value {
+        font-weight: 900;
     }
 }
 
@@ -106,6 +115,12 @@
         background: transparent;
         top: $top-bar-height;
         width: 300px;
+        left: 0;
+
+        &_hidden {
+            transform: translateX(-300px)
+        }
+
     }
 
     .highlight-sidebar {

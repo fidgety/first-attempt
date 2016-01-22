@@ -8,15 +8,18 @@ import HighlightSummary from '../../components/highlightSummary';
 import { connect } from 'react-redux';
 import { findNearestLatLng, undo } from '../../actionCreators/planner';
 import { saveRoute } from '../../actionCreators/save';
+import { highlightSelected, highlightClosed } from '../../actionCreators/highlights';
 
 const select = (state) => {
     return {
-        waypoints: state.waypoints,
-        route: state.route,
-        routeStarted: state.routeStarted,
-        routeSaved: state.routeSaved,
-        elevationStatistics: state.elevationStatistics,
-        routeStatistics: state.routeStatistics
+        waypoints: state.planner.waypoints,
+        route: state.planner.route,
+        routeStarted: state.planner.routeStarted,
+        routeSaved: state.planner.routeSaved,
+        elevationStatistics: state.planner.elevationStatistics,
+        routeStatistics: state.planner.routeStatistics,
+        highlights: state.highlights.highlights,
+        selectedHighlight: state.highlights.selectedHighlight
     };
 };
 
@@ -40,10 +43,20 @@ export default connect(select)(React.createClass({
                     flatish={this.props.elevationStatistics.flatish}
                     distance={this.props.routeStatistics.distance}
                 />
-                <HighlightSummary/>
+                <HighlightSummary
+                    selectedHighlight={this.props.selectedHighlight}
+                    onHighlightClosed={() => {
+                        this.props.dispatch(highlightClosed())
+                    }}
+                    onHighlightAdded={() => {alert('add');}}
+                />
                 <PlannerMap
                     waypoints={this.props.waypoints}
                     route={this.props.route}
+                    highlights={this.props.highlights}
+                    onHighlightSelected={(name) => {
+                        this.props.dispatch(highlightSelected(name))
+                    }}
                     onLatLngSelected={(latLng) =>
                         this.props.dispatch(findNearestLatLng(latLng))}
                 />

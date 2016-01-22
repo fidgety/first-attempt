@@ -56,9 +56,9 @@ module.exports = React.createClass({
         });
     },
     render() {
-        let map = this.state.map;
+        const map = this.state.map;
 
-        let markers = this.props.waypoints.map((waypoint) => {
+        const markers = this.props.waypoints.map((waypoint) => {
             return <Marker
                 latLng={waypoint}
                 map={map}
@@ -67,10 +67,25 @@ module.exports = React.createClass({
             />
         });
 
+        const highlights = Object.keys(this.props.highlights).map((highlightName) => {
+            const highlight = this.props.highlights[highlightName];
+
+            return <Marker
+                latLng={highlight.location}
+                map={map}
+                classPrefix="highlight"
+                key={highlight.location + map}
+                onclick={() => {
+                    this.props.onHighlightSelected(highlight.name);
+                }}
+            />
+        });
+
         return (
             <div id="map">
                 <div id="map-canvas"></div>
                 {markers}
+                {highlights}
                 <Polyline
                     map={map}
                     polyline={this.props.route}
