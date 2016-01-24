@@ -1,0 +1,20 @@
+.highlight-marker {
+    height: 30px;
+    width: 20px;
+    background: yellow;
+    position: absolute;
+    cursor: pointer;
+
+    .add {
+        display: none;
+        height: 30px;
+        width: 20px;
+        background: red;
+        position: absolute;
+        cursor: pointer;
+    }
+
+    &.selected .add {
+        display: block;
+    }
+}

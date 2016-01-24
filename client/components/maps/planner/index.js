@@ -2,6 +2,7 @@ import React from 'react';
 import mainMapOptions from '../mainMapOptions';
 import Marker from '../../marker';
 import Polyline from '../../polyline';
+import HighlightMarkers from '../../highlightMarkers';
 
 require('./style.scss');
 
@@ -62,22 +63,8 @@ module.exports = React.createClass({
             return <Marker
                 latLng={waypoint}
                 map={map}
-                classPrefix="waypoint"
+                markerDiv={<div className="waypoint-marker"></div>}
                 key={waypoint.toString()}
-            />
-        });
-
-        const highlights = Object.keys(this.props.highlights).map((highlightName) => {
-            const highlight = this.props.highlights[highlightName];
-
-            return <Marker
-                latLng={highlight.location}
-                map={map}
-                classPrefix="highlight"
-                key={highlight.location + map}
-                onclick={() => {
-                    this.props.onHighlightSelected(highlight.name);
-                }}
             />
         });
 
@@ -85,7 +72,11 @@ module.exports = React.createClass({
             <div id="map">
                 <div id="map-canvas"></div>
                 {markers}
-                {highlights}
+                <HighlightMarkers
+                    map={map}
+                    onHighlightSelected={this.props.onHighlightSelected}
+                    highlights={this.props.highlights}
+                />
                 <Polyline
                     map={map}
                     polyline={this.props.route}
