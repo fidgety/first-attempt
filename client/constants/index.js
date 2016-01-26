@@ -11,3 +11,4 @@ export const ROUTE_SAVED = 'ROUTE_SAVED';
 // highlights
 export const HIGHLIGHT_SELECTED = 'HIGHLIGHT_SELECTED';
 export const HIGHLIGHT_CLOSED = 'HIGHLIGHT_CLOSED';
+export const HIGHLIGHT_ADDED = 'HIGHLIGHT_ADDED';

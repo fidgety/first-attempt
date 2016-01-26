@@ -8,7 +8,7 @@ import HighlightSummary from '../../components/highlightSummary';
 import { connect } from 'react-redux';
 import { findNearestLatLng, undo } from '../../actionCreators/planner';
 import { saveRoute } from '../../actionCreators/save';
-import { highlightSelected, highlightClosed } from '../../actionCreators/highlights';
+import { highlightSelected, highlightClosed, highlightAdded } from '../../actionCreators/highlights';
 
 const select = (state) => {
     return {
@@ -48,7 +48,10 @@ export default connect(select)(React.createClass({
                     onHighlightClosed={() => {
                         this.props.dispatch(highlightClosed())
                     }}
-                    onHighlightAdded={() => {alert('add');}}
+                    onHighlightAdded={(highlight) => {
+                        this.props.dispatch(highlightAdded(highlight));
+                        this.props.dispatch(highlightClosed());
+                    }}
                 />
                 <PlannerMap
                     waypoints={this.props.waypoints}

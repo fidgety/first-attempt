@@ -19,6 +19,26 @@ const calculateElevationStatistics = (elevationsPerLeg) => {
     return elevationStats(elevations);
 };
 
+const addWaypointOrHighlight = (state, waypoint, highlight) => {
+    const latLng = waypoint || highlight.location;
+
+    if (state.waypoints.length) {
+        let endOfCurrentRoute = state.waypoints[state.waypoints.length - 1];
+        store.dispatch(findRoute(endOfCurrentRoute, latLng));
+    }
+
+    let waypoints = state.waypoints.concat([latLng]);
+    let highlights = state.highlights.concat([highlight]);
+
+    return Object.assign({}, state, {
+        currentPoint: latLng,
+        waypoints,
+        highlights,
+        routeStarted: waypoints.length !== 0,
+        routeSaved: false
+    });
+};
+
 export default (state, action) => {
     if (!state) {
         return {
@@ -26,6 +46,7 @@ export default (state, action) => {
             waypoints: [],
             legs: [],
             route: [],
+            highlights: [],
             routeStarted: false,
             routeSaved: false,
             elevations: [],
@@ -41,19 +62,11 @@ export default (state, action) => {
     }
 
     if (action.type === types.LAT_LNG_SELECTED) {
-        if (state.waypoints.length) {
-            let endOfCurrentRoute = state.waypoints[state.waypoints.length - 1];
-            store.dispatch(findRoute(endOfCurrentRoute, action.latLng));
-        }
+        return addWaypointOrHighlight(state, action.latLng);
+    }
 
-        let waypoints = state.waypoints.concat([action.latLng]);
-
-        return Object.assign({}, state, {
-            currentPoint: action.latLng,
-            waypoints,
-            routeStarted: waypoints.length !== 0,
-            routeSaved: false
-        });
+    if (action.type === types.HIGHLIGHT_ADDED) {
+        return addWaypointOrHighlight(state, undefined, action.highlight);
     }
 
     if (action.type === types.DIRECTIONS_FOUND) {
@@ -72,15 +85,18 @@ export default (state, action) => {
         let waypoints = state.waypoints.concat([]);
         let legs = state.legs.concat([]);
         let elevations = state.elevations.concat([]);
+        let highlights = state.elevations.concat([]);
         waypoints.pop();
         legs.pop();
         elevations.pop();
+        highlights.pop();
         const route = buildFullRoute(legs);
         let currentPoint = waypoints[waypoints.length - 1];
 
         return Object.assign({}, state, {
             currentPoint,
             waypoints,
+            highlights,
             legs,
             route,
             routeStarted: waypoints.length !== 0,

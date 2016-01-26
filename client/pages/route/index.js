@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 
 const select = (state) => {
     return {
-        route: state.route,
-        routeSaved: state.routeSaved
+        route: state.planner.route,
+        routeSaved: state.planner.routeSaved
     };
 };
 

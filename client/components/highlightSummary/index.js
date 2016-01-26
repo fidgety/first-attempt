@@ -36,7 +36,9 @@ export default React.createClass({
                     </div>
                 </div>
                 <div className="highlight-sidebar__controls">
-                    <div onClick={this.props.onHighlightAdded} className="highlight-button add">+</div>
+                    <div onClick={() => {
+                        this.props.onHighlightAdded(highlight);
+                    }} className="highlight-button add">+</div>
                     <div onClick={this.props.onHighlightClosed} className="highlight-button close">-</div>
                 </div>
                 <div className="highlight-sidebar__info">

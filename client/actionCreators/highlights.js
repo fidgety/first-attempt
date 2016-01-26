@@ -12,3 +12,10 @@ export const highlightClosed = () => {
         type: types.HIGHLIGHT_CLOSED
     };
 };
+
+export const highlightAdded = (highlight) => {
+    return {
+        type: types.HIGHLIGHT_ADDED,
+        highlight
+    };
+};

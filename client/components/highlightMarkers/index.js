@@ -13,7 +13,7 @@ export default React.createClass({
             return <Marker
                 latLng={highlight.location}
                 map={map}
-                markerDiv={<div className={className}><div className="add">+</div></div>}
+                markerDiv={<div className={className}><div className="add highlight-marker__button">+</div><div className="close highlight-marker__button">-</div></div>}
                 key={highlight.location + map}
                 onClick={() => {
                     this.props.onHighlightSelected(highlight.name);
