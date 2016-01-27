@@ -8,7 +8,7 @@ export default (state, action) => {
         return {
             highlights: {
                 'Cutlery Factory': {
-                    location: new google.maps.LatLng(53.312211176459776, -1.6417694091796875), // eslint-disable-line
+                    location: new google.maps.LatLng(53.32454221338231, -1.6524338722229004), // eslint-disable-line
                     name: 'Cutlery Factory',
                     type: 'café',
                     image: '/images/cutlery-factory-1.jpg',

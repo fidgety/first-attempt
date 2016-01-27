@@ -1,26 +1,33 @@
 .highlight-marker {
-    height: 30px;
-    width: 20px;
+    height: 48px;
+    width: 40px;
     top: -30px;
     left: 10px;
-    background: #F43D51;
+    background: url('/images/pins/cafe.png') no-repeat;
+    background-size: contain;
     position: absolute;
     cursor: pointer;
+    transition: 0.1s linear;
+
+    &:hover {
+        transform: scale(1.2);
+    }
 
     &.selected {
+        transform: scale(1.2);
     }
 
     &.selected .highlight-marker__button {
         opacity: 1;
 
         &.add {
-            top: -40px;
-            left: 20px;
+            top: -30px;
+            left: 30px;
         }
 
         &.close {
-            top: -40px;
-            left: -30px;
+            top: -30px;
+            left: -20px;
         }
     }
 }
