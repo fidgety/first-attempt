@@ -18,6 +18,18 @@ export default (state, action) => {
                     },
                     description: 'David Mellor was an industrial designer; you may not have heard of him but if you visit this beautiful complex you\'ll see many examples of everyday objects he crafted. He built this complex to make high end cutlery, which they still do to this day. The cafe has ample seating inside and out and is a wonderful little oasis of culture. There is a good selection of cakes and food, and the staff couldn\'t be nicer.', // eslint-disable-line
                     selected: false
+                },
+                'Cutlery Factory2': {
+                    location: new google.maps.LatLng(53.30454221338231, -1.6524338722229004), // eslint-disable-line
+                    name: 'Cutlery Factory2',
+                    type: 'view',
+                    image: '/images/cutlery-factory-1.jpg',
+                    stats: {
+                        cost: '£££',
+                        quality: '****'
+                    },
+                    description: 'David Mellor was an industrial designer; you may not have heard of him but if you visit this beautiful complex you\'ll see many examples of everyday objects he crafted. He built this complex to make high end cutlery, which they still do to this day. The cafe has ample seating inside and out and is a wonderful little oasis of culture. There is a good selection of cakes and food, and the staff couldn\'t be nicer.', // eslint-disable-line
+                    selected: false
                 }
             },
             selectedHighlight: undefined

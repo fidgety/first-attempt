@@ -21,7 +21,7 @@ module.exports = React.createClass({
     shouldComponentUpdate(nextProps) {
         this.state.polyline.setMap(nextProps.map);
         this.state.polyline.setOptions({
-            strokeColor:nextProps.strokeColour || '#FF6633',
+            strokeColor:nextProps.strokeColour || '#00ff00',
             strokeWeight:nextProps.strokeWeight || 4
         });
 

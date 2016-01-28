@@ -10,9 +10,15 @@ const reducers = combineReducers({
     highlights
 });
 
+const saveState = store => next => action => {
+    localStorage.setItem('lastState', JSON.stringify(store.getState()));
+    next(action);
+};
+
 const createStoreWithMiddleware = applyMiddleware(
     thunkMiddleware,
-    createLogger()
+    createLogger(),
+    saveState
 )(createStore);
 const store = createStoreWithMiddleware(reducers, serverStore);
 
