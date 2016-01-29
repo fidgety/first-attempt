@@ -11,7 +11,7 @@ export default React.createClass({
         return (
             <div className="user">
             {this.props.loggedIn ?
-                <div>{this.props.username}<img src={this.props.photo}/></div> :
+                <div>{this.props.username} <img src={this.props.photo}/></div> :
                 <a href="/login/twitter">Log in<span className="user__register"> / Register</span></a>}
             </div>
         );

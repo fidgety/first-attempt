@@ -11,6 +11,7 @@ import { saveRoute } from '../../actionCreators/save';
 import { highlightSelected, highlightClosed, highlightAdded } from '../../actionCreators/highlights';
 
 const select = (state) => {
+    localStorage.setItem('lastState', JSON.stringify(state));
     return {
         waypoints: state.planner.waypoints,
         route: state.planner.route,

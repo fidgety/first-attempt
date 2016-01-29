@@ -18,6 +18,12 @@ export default React.createClass({
             distance: 0
         }
     },
+    componentWillMount() {
+        this.tweenState('distance', {
+            duration: 500,
+            endValue: Math.floor(this.props.distance / 1000)
+        });
+    },
     componentWillReceiveProps(nextProps) {
         this.tweenState('distance', {
             duration: 500,

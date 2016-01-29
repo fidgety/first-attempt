@@ -7,48 +7,13 @@
     background-size: contain;
     position: absolute;
     cursor: pointer;
-    transition: 0.1s linear;
+    transition: all 0.3s linear;
 
     &:hover {
         transform: scale(1.2);
     }
 
     &.selected {
-        transform: scale(1.2);
-    }
-
-    &.selected .highlight-marker__button {
-        opacity: 1;
-
-        &.add {
-            top: -30px;
-            left: 30px;
-        }
-
-        &.close {
-            top: -30px;
-            left: -20px;
-        }
-    }
-}
-
-.highlight-marker__button {
-    color: white;
-    height: 30px;
-    width: 30px;
-    background: #F43D51;
-    position: absolute;
-    cursor: pointer;
-    border-radius: 9999px;
-    text-align: center;
-    line-height: 28px;
-    font-size: 20px;
-    transition: all 0.1s linear;
-    opacity: 0;
-    top: 0;
-    left: 0;
-
-    &:hover {
         transform: scale(1.2);
     }
 }
