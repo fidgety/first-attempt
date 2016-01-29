@@ -3,11 +3,19 @@
     width: 40px;
     top: -30px;
     left: 10px;
-    background: url('/images/pins/cafe.png') no-repeat;
-    background-size: contain;
     position: absolute;
     cursor: pointer;
-    transition: all 0.3s linear;
+    transition: all 0.1s linear;
+
+    &.café {
+        background: url('/images/pins/cafe.png') no-repeat;
+        background-size: contain;
+    }
+
+    &.view {
+        background: url('/images/pins/view.png') no-repeat;
+        background-size: contain;
+    }
 
     &:hover {
         transform: scale(1.2);

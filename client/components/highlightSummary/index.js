@@ -23,7 +23,7 @@ export default React.createClass({
     },
     render() {
         const highlight = this.state.highlight;
-        const classes = this.props.selectedHighlight ? 'modal' : 'modal modal_hidden';
+        const classes = 'modal ' + highlight.type + (this.props.selectedHighlight ? '' : ' modal_hidden');
 
 
         return <div className={classes}>

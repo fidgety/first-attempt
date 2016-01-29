@@ -7,7 +7,7 @@ export default React.createClass({
     render() {
         const highlightMarkers = Object.keys(this.props.highlights).map((highlightName) => {
             const highlight = this.props.highlights[highlightName];
-            const className = highlight.selected ? 'highlight-marker selected' : 'highlight-marker';
+            const className = 'highlight-marker ' + highlight.type + (highlight.selected ? ' selected' : '');
             const map = this.props.map;
 
             return <Marker

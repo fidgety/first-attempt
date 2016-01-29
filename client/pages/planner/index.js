@@ -7,7 +7,7 @@ import HighlightSummary from '../../components/highlightSummary';
 
 import { connect } from 'react-redux';
 import { findNearestLatLng, undo } from '../../actionCreators/planner';
-import { saveRoute } from '../../actionCreators/save';
+import { saveRoute, updateRouteDetails } from '../../actionCreators/save';
 import { highlightSelected, highlightClosed, highlightAdded } from '../../actionCreators/highlights';
 
 const select = (state) => {
@@ -33,6 +33,7 @@ export default connect(select)(React.createClass({
                     onUndo={() => this.props.dispatch(undo())}
                     onSave={() => {
                         let routeName = window.prompt('Please give your route a name');
+                        updateRouteDetails(routeName);
                         this.props.dispatch(saveRoute(routeName));
                     }}
                     routeSaved={this.props.routeSaved}

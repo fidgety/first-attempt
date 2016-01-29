@@ -42,6 +42,7 @@ const addWaypointOrHighlight = (state, waypoint, highlight) => {
 export default (state, action) => {
     if (!state) {
         return {
+            name: '',
             currentPoint: undefined,
             waypoints: [],
             legs: [],
@@ -121,6 +122,12 @@ export default (state, action) => {
     if (action.type === types.ROUTE_SAVED) {
         return Object.assign({}, state, {
             routeSaved: true
+        });
+    }
+
+    if (action.type === types.ROUTE_DETAILS_UPDATED) {
+        return Object.assign({}, state, {
+            name: action.name
         });
     }
 

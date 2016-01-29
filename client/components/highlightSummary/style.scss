@@ -56,13 +56,24 @@
 
 .highlight-sidebar__controls {
     height: 3px;
-    background: $café;
     position: relative;
+
+    .café & {
+        background: $café;
+    }
+    .view & {
+        background: $view;
+    }
 
     .highlight-button {
         width: 50px;
         height: 50px;
-        background: $café;
+        .café & {
+            background: $café;
+        }
+        .view & {
+            background: $view;
+        }
         line-height: 50px;
         font-size: 20px;
         text-align: center;
@@ -89,8 +100,12 @@
 
 .highlight-sidebar__info {
     color: white;
-    padding: 10px 10px 0 10px;
+    padding: 20px 10px 0 10px;
 
+    table {
+        margin-top: -10px;
+    }
+    
     .key {
         font-weight: 100;
         text-transform: uppercase;

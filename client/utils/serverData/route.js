@@ -8,24 +8,31 @@ const latLngToGoogleLatLng = (latLng) => {
     return new LatLng(latLng);
 };
 
+var stateToHydrate = {
+    planner: undefined,
+    highlights: undefined
+};
+
 var prevState = JSON.parse(localStorage.getItem('lastState'));
+var routePage = !!veloptuous.route;
 
 if (prevState && !veloptuous.route) {
-    veloptuous.route = prevState;
+    console.log(prevState)
+    veloptuous.route = prevState.planner;
 }
 
 if (veloptuous.route) {
-    veloptuous.route.planner.route = arrayToLatLng(veloptuous.route.planner.route);
-    veloptuous.route.planner.waypoints = arrayToLatLng(veloptuous.route.planner.waypoints);
-    veloptuous.route.planner.legs = veloptuous.route.planner.legs.map(arrayToLatLng);
-    veloptuous.route.planner.elevations = veloptuous.route.planner.elevations.map((elevation) => {
+    veloptuous.route.route = arrayToLatLng(veloptuous.route.route);
+    veloptuous.route.waypoints = arrayToLatLng(veloptuous.route.waypoints);
+    veloptuous.route.legs = veloptuous.route.legs.map(arrayToLatLng);
+    veloptuous.route.elevations = veloptuous.route.elevations.map((elevation) => {
         return elevation.map((ele) => {
             return Object.assign({}, ele, {
                 location: latLngToGoogleLatLng(ele.location)
             });
         });
     });
-    veloptuous.route.planner.highlights = veloptuous.route.planner.highlights.map((highlight) => {
+    veloptuous.route.highlights = veloptuous.route.highlights.map((highlight) => {
         if (highlight) {
             return Object.assign({}, highlight, {
                 location: latLngToGoogleLatLng(highlight.location)
@@ -33,7 +40,18 @@ if (veloptuous.route) {
         }
     });
 
-    veloptuous.route.highlights = undefined;
-}
+    stateToHydrate.planner = veloptuous.route;
 
-export default veloptuous.route;
+    if (routePage) {
+        var hl = {};
+        veloptuous.route.highlights.forEach((highlight) => {
+            if (highlight) {
+                hl[highlight.name] = highlight;
+            }
+        });
+        stateToHydrate.highlights = {highlights: hl};
+    }
+
+}
+console.log(stateToHydrate)
+export default stateToHydrate;
