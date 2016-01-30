@@ -39,6 +39,12 @@ export const undo = () => {
     };
 };
 
+export const reset = () => {
+    return {
+        type: types.RESET
+    };
+};
+
 export const elevationsUpdated = (elevations) => {
     return {
         type: types.ELEVATIONS_UPDATED,

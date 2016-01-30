@@ -4,9 +4,10 @@ import TopBar from '../../components/topbar';
 import PlannerControls from '../../components/plannerControls';
 import Summary from '../../components/statistics/summary';
 import HighlightSummary from '../../components/highlightSummary';
+import PlannerResumeRestart from '../../components/plannerResumeRestart';
 
 import { connect } from 'react-redux';
-import { findNearestLatLng, undo } from '../../actionCreators/planner';
+import { findNearestLatLng, undo, reset } from '../../actionCreators/planner';
 import { saveRoute, updateRouteDetails } from '../../actionCreators/save';
 import { highlightSelected, highlightClosed, highlightAdded } from '../../actionCreators/highlights';
 
@@ -37,6 +38,12 @@ export default connect(select)(React.createClass({
                         this.props.dispatch(saveRoute(routeName));
                     }}
                     routeSaved={this.props.routeSaved}
+                    routeStarted={this.props.routeStarted}
+                />
+                <PlannerResumeRestart
+                    onReset={() => {
+                        this.props.dispatch(reset());
+                    }}
                     routeStarted={this.props.routeStarted}
                 />
                 <Summary

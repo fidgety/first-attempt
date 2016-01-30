@@ -1,6 +1,5 @@
 import React from 'react';
 import PlannerControl from '../plannerControl';
-import { undo } from '../../actionCreators/planner';
 
 require('./style.scss');
 

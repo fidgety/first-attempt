@@ -53,5 +53,5 @@ if (veloptuous.route) {
     }
 
 }
-console.log(stateToHydrate)
+
 export default stateToHydrate;

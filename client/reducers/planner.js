@@ -1,8 +1,31 @@
-import * as types from '../constants';
+import * as
+types
+from
+'../constants';
 import store from '../store';
 import { findRoute } from '../actionCreators/planner';
 import elevationStats from '../utils/statistics/elevation';
 import { calculateDistance } from '../utils/maps/polyline';
+
+const defaultState = {
+    name: '',
+    currentPoint: undefined,
+    waypoints: [],
+    legs: [],
+    route: [],
+    highlights: [],
+    routeStarted: false,
+    routeSaved: false,
+    elevations: [],
+    elevationStatistics: {
+        uphill: 0,
+        downhill: 0,
+        flatish: 0
+    },
+    routeStatistics: {
+        distance: 0
+    }
+};
 
 const flattenArray = (array) => {
     return [].concat.apply([], array);
@@ -41,25 +64,11 @@ const addWaypointOrHighlight = (state, waypoint, highlight) => {
 
 export default (state, action) => {
     if (!state) {
-        return {
-            name: '',
-            currentPoint: undefined,
-            waypoints: [],
-            legs: [],
-            route: [],
-            highlights: [],
-            routeStarted: false,
-            routeSaved: false,
-            elevations: [],
-            elevationStatistics: {
-                uphill: 0,
-                downhill: 0,
-                flatish: 0
-            },
-            routeStatistics: {
-                distance: 0
-            }
-        };
+        return defaultState;
+    }
+
+    if (action.type === types.RESET) {
+        return defaultState;
     }
 
     if (action.type === types.LAT_LNG_SELECTED) {
