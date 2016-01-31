@@ -1,3 +1,5 @@
+@import "colours";
+
 $height: 5px;
 
 .loader {
@@ -33,27 +35,27 @@ $height: 5px;
 }
 
 .loader__inner1 {
-    background: #F43D51;
+    background: $colour-bar-1;
 }
 
 .loader__inner2 {
     animation-delay: 0.7s;
-    background: #5E5473;
+    background: $colour-bar-2;
 }
 
 .loader__inner3 {
     animation-delay: 1.4s;
-    background: #60A589;
+    background: $colour-bar-3;
 }
 
 .loader__inner4 {
     animation-delay: 2.1s;
-    background: #FF6933;
+    background: $colour-bar-4;
 }
 
 .loader__inner5 {
     animation-delay: 2.8s;
-    background: #F0C505;
+    background: $colour-bar-5;
 }
 
 @keyframes slider {
