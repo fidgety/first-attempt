@@ -23,12 +23,20 @@ export default React.createClass({
 
             let downloadingImage = new Image();
             downloadingImage.onload = () => {
-                setTimeout(() => {
+                if (this.state.timer) {
+                    clearTimeout(this.state.timer);
+                }
+
+                const timer = setTimeout(() => {
                     this.setState({
                         imageSrc: nextProps.src,
                         loaded: true
                     })
                 }, 1000);
+
+                this.setState({
+                    timer
+                });
             };
             downloadingImage.src = nextProps.src;
 
