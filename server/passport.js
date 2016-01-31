@@ -6,7 +6,7 @@ module.exports = function (app) {
     passport.use(new Strategy({
         consumerKey: process.env.CONSUMER_KEY,
         consumerSecret: process.env.CONSUMER_SECRET,
-        callbackURL: 'http://localhost:3004/login/twitter/return'
+        callbackURL: '/login/twitter/return'
     }, (token, tokenSecret, profile, cb) => {
         userDb.add(profile);
         return cb(null, profile);
