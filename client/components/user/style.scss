@@ -14,12 +14,20 @@
     }
 }
 
+.user__username {
+    display: none;
+}
+
 .user__register {
     display: none;
 }
 
 @media (min-width: $x-small) {
     .user__register {
+        display: inline;
+    }
+
+    .user__username {
         display: inline;
     }
 }

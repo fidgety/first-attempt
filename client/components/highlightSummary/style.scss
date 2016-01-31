@@ -1,4 +1,5 @@
 @import "constants";
+@import "constants";
 @import "colours";
 @import "breakpoints";
 
@@ -14,6 +15,12 @@
     }
 }
 
+.loader {
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .highlight-sidebar {
     width: 90%;
     margin: 5%;
@@ -25,6 +32,7 @@
 }
 
 .highlight-sidebar__image {
+    position: relative;
     width: 100%;
     vertical-align: top;
 }

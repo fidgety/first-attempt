@@ -1,5 +1,7 @@
 import React from 'react';
 import StatsTable from './statsTable';
+import Loader from '../loader';
+import ImageLoader from './imageLoader';
 
 require('./style.scss');
 
@@ -25,11 +27,11 @@ export default React.createClass({
         const highlight = this.state.highlight;
         const classes = 'modal ' + highlight.type + (this.props.selectedHighlight ? '' : ' modal_hidden');
 
-
         return <div className={classes}>
             <div className="highlight-sidebar">
                 <div className="holder">
-                    <img className="highlight-sidebar__image" src={highlight.image}/>
+                    <Loader/>
+                    <ImageLoader className="highlight-sidebar__image" src={highlight.image}/>
                     <div className="highlight-sidebar__main-info">
                         <h2>{highlight.name}</h2>
                         <h3>{highlight.type}</h3>
