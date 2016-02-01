@@ -18,7 +18,7 @@ export default React.createClass({
         }, resetState);
     },
     componentWillReceiveProps(nextProps) {
-        if (nextProps.src) {
+        if (nextProps.src && nextProps.src !== this.props.src) {
             this.setState(resetState);
 
             let downloadingImage = new Image();

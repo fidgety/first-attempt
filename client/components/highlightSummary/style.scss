@@ -9,9 +9,14 @@
     background: rgba(0, 0, 0, 0.6);
     z-index: 20;
     position: absolute;
+    left: 0;
+    opacity: 1;
+    transition: opacity 0.4s ease-out;
 
     &_hidden {
-        display: none;
+        left: -800px;
+        opacity: 0;
+        transition: opacity 0.4s ease-out;
     }
 }
 
@@ -27,7 +32,6 @@
     background: rgba(0, 0, 0, 0.8);
     height: 90%;
     position: absolute;
-    xtop: $top-bar-height + 10px;
     overflow: hidden;
 }
 
@@ -141,6 +145,7 @@
         left: 0;
 
         &_hidden {
+            display: block;
             transform: translateX(-300px)
         }
 
