@@ -5,9 +5,20 @@
     padding: 0;
 }
 
-.waypoint-marker {
-    height: 30px;
-    width: 20px;
-    background: green;
-    position: absolute;
+.start-marker {
+    height: 48px;
+    width: 40px;
+    cursor: pointer;
+    transition: all 0.1s linear;
+
+    background: url('/images/pins/start.png') no-repeat;
+    background-size: contain;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+
+    &.selected {
+        transform: scale(1.2);
+    }
 }

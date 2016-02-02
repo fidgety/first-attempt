@@ -59,10 +59,20 @@ module.exports = React.createClass({
     },
     render() {
         const map = this.state.map;
+        const startMarker = this.props.waypoints.length ? <Marker
+            latLng={this.props.waypoints[0]}
+            map={map}
+            markerDiv={<div className="start-marker"></div>}
+            onClick={() => {
+                alert('clicky - what should this do?');
+                return false;
+            }}
+        /> : null;
 
         return (
             <div id="map">
                 <div id="map-canvas"></div>
+                {startMarker}
                 <HighlightMarkers
                     map={map}
                     onHighlightSelected={this.props.onHighlightSelected}

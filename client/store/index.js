@@ -11,8 +11,8 @@ const reducers = combineReducers({
 });
 
 const createStoreWithMiddleware = applyMiddleware(
-    thunkMiddleware,
-    createLogger()
+    thunkMiddleware//,
+    //createLogger()
 )(createStore);
 const store = createStoreWithMiddleware(reducers, serverStore);
 
