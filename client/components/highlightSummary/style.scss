@@ -143,16 +143,41 @@
         top: $top-bar-height;
         width: 300px;
         left: 0;
+        transition: all 0.3s ease-out;
 
         &_hidden {
             display: block;
-            transform: translateX(-300px)
+            transform: translateX(-300px);
+            transition: all 0.3s ease-out;
         }
 
     }
 
     .highlight-sidebar {
         width: 300px;
+        margin: 0;
+        height: 100%;
+    }
+}
+
+@media (min-width: $small) {
+    .modal {
+        background: transparent;
+        top: $top-bar-height;
+        width: 400px;
+        left: 0;
+        transition: all 0.3s ease-out;
+
+        &_hidden {
+            display: block;
+            transform: translateX(-400px);
+            transition: all 0.3s ease-out;
+        }
+
+    }
+
+    .highlight-sidebar {
+        width: 400px;
         margin: 0;
         height: 100%;
     }
