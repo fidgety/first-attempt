@@ -1,8 +1,9 @@
 import React from 'react';
 import mainMapOptions from '../mainMapOptions';
-import Marker from '../../marker';
 import Polyline from '../../polyline';
 import HighlightMarkers from '../../highlightMarkers';
+import StartMarker from '../../startMarker';
+import ToolTip from '../../toolTips';
 
 require('./style.scss');
 
@@ -59,20 +60,18 @@ module.exports = React.createClass({
     },
     render() {
         const map = this.state.map;
-        const startMarker = this.props.waypoints.length ? <Marker
-            latLng={this.props.waypoints[0]}
-            map={map}
-            markerDiv={<div className="start-marker"></div>}
-            onClick={() => {
-                alert('clicky - what should this do?');
-                return false;
-            }}
-        /> : null;
 
         return (
             <div id="map">
                 <div id="map-canvas"></div>
-                {startMarker}
+                <ToolTip
+                    id="welcome"
+                    message={<div><p>Hi there! I'm here to guide you around.</p><p>Click ok and I'll go away!</p></div>}
+                />
+                <StartMarker
+                    map={map}
+                    waypoints={this.props.waypoints}
+                />
                 <HighlightMarkers
                     map={map}
                     onHighlightSelected={this.props.onHighlightSelected}

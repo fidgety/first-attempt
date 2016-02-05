@@ -1,0 +1,85 @@
+.tool-tip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    background: rgba(0,0,0,0.8);
+    text-align: center;
+    animation: bounce 2s 0s infinite ease-in-out, open 0.2s 0s linear;
+    box-shadow: 2px 2px 13px rgba(0,0,0,0.3);
+    border-radius: 50%;
+    font-family: Helvetica, Arial;
+}
+
+.tool-tip.tool-tip--closed {
+    animation: closed 0.2s 0s linear;
+    animation-fill-mode: forwards;
+}
+
+.tool-top__info {
+    color: white;
+    width: 140px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    p {
+        margin: 10px 0;
+    }
+}
+
+.tool-tip__ok {
+    background: rgba(255,255,255,0.9);
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    box-shadow: 2px 2px 13px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: 0.2s linear;
+
+    &:hover {
+        transform: scale(1.2);
+        transition: 0.2s linear;
+    }
+}
+
+@keyframes open {
+    0% {
+        opacity: 0;
+        transform: scale(0.1) translate(-50%, -50%);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translate(-50%, -50%);
+    }
+}
+
+@keyframes closed {
+    0% {
+        opacity: 1;
+        transform: scale(1) translate(-50%, -50%);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.1) translate(-50%, -50%);
+    }
+}
+
+@keyframes bounce {
+    0% {
+        margin-top: -3px;
+    }
+    50% {
+        margin-top: 3px;
+    }
+    100% {
+        margin-top: -3px;
+    }
+}
