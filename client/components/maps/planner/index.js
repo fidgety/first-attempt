@@ -66,7 +66,7 @@ module.exports = React.createClass({
                 <div id="map-canvas"></div>
                 <ToolTip
                     id="welcome"
-                    message={<div><p>Hi there! I'm here to guide you around.</p><p>Click ok and I'll go away!</p></div>}
+                    message={<div><p>Click anywhere on the map to start a route.</p><p>Or click a pin too see more info about a highlight.</p></div>}
                 />
                 <StartMarker
                     map={map}

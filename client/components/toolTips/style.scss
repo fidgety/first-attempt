@@ -10,6 +10,7 @@
     animation: bounce 2s 0s infinite ease-in-out, open 0.2s 0s linear;
     box-shadow: 2px 2px 13px rgba(0,0,0,0.3);
     border-radius: 50%;
+    z-index: 20;
     font-family: Helvetica, Arial;
 }
 

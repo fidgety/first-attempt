@@ -2,6 +2,7 @@ import React from 'react';
 import StatsTable from './statsTable';
 import Loader from '../loader';
 import ImageLoader from './imageLoader';
+import ToolTip from '../toolTips';
 
 require('./style.scss');
 
@@ -28,6 +29,10 @@ export default React.createClass({
         const classes = 'modal ' + highlight.type + (this.props.selectedHighlight ? '' : ' modal_hidden');
 
         return <div className={classes}>
+            <ToolTip
+                id="highlight"
+                message={<div><p>Click plus to add this highlight to your route.</p><p>Click minus to close this information box.</p></div>}
+            />
             <div className="highlight-sidebar">
                 <div className="holder">
                     <Loader/>
