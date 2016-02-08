@@ -1,24 +1,24 @@
 import React from 'react';
-import Marker from '../marker';
+import Marker from '../highlightMarker';
 
-require('./style.scss');
+import Polyline from '../polyline';
 
 export default React.createClass({
     render() {
         const highlightMarkers = Object.keys(this.props.highlights).map((highlightName) => {
             const highlight = this.props.highlights[highlightName];
-            const className = 'highlight-marker ' + highlight.type + (highlight.selected ? ' selected' : '');
-            const map = this.props.map;
 
+            if (highlight.route) {
+                return <Polyline
+                    map={this.props.map}
+                    polyline={highlight.route}
+                    key={highlightName}
+                />
+            }
             return <Marker
-                latLng={highlight.location}
-                map={map}
-                markerDiv={<div className={className}></div>}
-                key={highlight.location + map}
-                onClick={() => {
-                    this.props.onHighlightSelected(highlight.name);
-                    return false;
-                }}
+                map={this.props.map}
+                highlight={highlight}
+                key={highlightName}
             />
         });
 

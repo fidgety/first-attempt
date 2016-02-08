@@ -26,6 +26,20 @@ export default (state, action) => {
                     },
                     description: 'It\'s tougher to find a higher spot you can cycle to in the Peaks. You\'re probably going to be fairly buffeted by the wind, so watch out.', // eslint-disable-line
                     selected: false
+                },
+                'Gliding Club': {
+                    route: [
+                        new google.maps.LatLng(53.339611489775805, -1.6215133666992188), // eslint-disable-line
+                        new google.maps.LatLng(53.349611489775805, -1.6215133666992188) // eslint-disable-line
+                    ],
+                    name: 'Gliding Club',
+                    type: 'climb',
+                    image: '',
+                    stats: {
+
+                    },
+                    description: '',
+                    selected: false
                 }
             },
             selectedHighlight: undefined
