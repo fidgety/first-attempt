@@ -11,8 +11,11 @@ import { findNearestLatLng, undo, reset } from '../../actionCreators/planner';
 import { saveRoute, updateRouteDetails } from '../../actionCreators/save';
 import { highlightSelected, highlightClosed, highlightAdded } from '../../actionCreators/highlights';
 
+import { encode } from '../../utils/maps/polyline';
+
 const select = (state) => {
     localStorage.setItem('lastState', JSON.stringify(state));
+    localStorage.setItem('lastRouteEncoded', encode(state.planner.route))
     return {
         waypoints: state.planner.waypoints,
         route: state.planner.route,

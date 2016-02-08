@@ -19,7 +19,7 @@ export const join = (polyline, polyline2) => {
 };
 
 export const encode = (polyline) => {
-    return encodePath(polyline.getPath());
+    return encodePath(polyline);
 };
 
 export const decode = (encodedPath) => {

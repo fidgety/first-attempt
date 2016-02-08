@@ -13,12 +13,17 @@ export default React.createClass({
                     map={this.props.map}
                     polyline={highlight.route}
                     key={highlightName}
+                    onClick={() => {
+                        this.props.onHighlightSelected(highlightName)
+                    }}
+                    strokeColour="#CC2029"
                 />
             }
             return <Marker
                 map={this.props.map}
                 highlight={highlight}
                 key={highlightName}
+                onHighlightSelected={this.props.onHighlightSelected}
             />
         });
 

@@ -80,6 +80,9 @@
     .view & {
         background: $view;
     }
+    .climb & {
+        background: $climb;
+    }
 
     .highlight-button {
         width: 50px;
@@ -89,6 +92,9 @@
         }
         .view & {
             background: $view;
+        }
+        .climb & {
+            background: $climb;
         }
         line-height: 50px;
         font-size: 20px;

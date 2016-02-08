@@ -26,7 +26,9 @@ module.exports = React.createClass({
         });
 
         google.maps.event.addListener(this.state.polyline, 'click', (e) => {
-            alert('clicked the polyline');
+            if (this.props.onClick) {
+                this.props.onClick();
+            }
         });
 
         return nextProps.polyline !== undefined
