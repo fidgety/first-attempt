@@ -1,7 +1,4 @@
-import * as
-types
-from
-'../constants';
+import * as types from '../constants';
 import store from '../store';
 import { findRoute } from '../actionCreators/planner';
 import elevationStats from '../utils/statistics/elevation';
@@ -92,14 +89,11 @@ export default (state, action) => {
     }
 
     if (action.type === types.UNDO) {
-        let waypoints = state.waypoints.concat([]);
-        let legs = state.legs.concat([]);
-        let elevations = state.elevations.concat([]);
-        let highlights = state.elevations.concat([]);
-        waypoints.pop();
-        legs.pop();
-        elevations.pop();
-        highlights.pop();
+        let waypoints = state.waypoints.slice(0, -1);
+        let legs = state.legs.slice(0, -1);
+        let elevations = state.elevations.slice(0, -1);
+        let highlights = state.elevations.slice(0, -1);
+
         const route = buildFullRoute(legs);
         let currentPoint = waypoints[waypoints.length - 1];
 
