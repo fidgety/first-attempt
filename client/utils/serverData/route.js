@@ -17,7 +17,6 @@ var prevState = JSON.parse(localStorage.getItem('lastState'));
 var routePage = !!veloptuous.route;
 
 if (prevState && !veloptuous.route) {
-    console.log(prevState)
     veloptuous.route = prevState.planner;
 }
 
@@ -33,7 +32,12 @@ if (veloptuous.route) {
         });
     });
     veloptuous.route.highlights = veloptuous.route.highlights.map((highlight) => {
-        if (highlight) {
+        if (highlight && highlight.route) {
+            return Object.assign({}, highlight, {
+                route: arrayToLatLng(highlight.route)
+            });
+        }
+        if (highlight && highlight.location) {
             return Object.assign({}, highlight, {
                 location: latLngToGoogleLatLng(highlight.location)
             });

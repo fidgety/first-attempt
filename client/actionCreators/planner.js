@@ -71,10 +71,15 @@ export const getElevationsForLeg = (latLngs) => {
     };
 };
 
-export const findRoute = (startLatLng, endLatLng) => {
+export const findRoute = (startLatLng, endLatLng, additionalRoute) => {
     return (dispatch) => {
         getDirections(startLatLng, endLatLng).then((route) => {
             let routeLatLngs = routeToLatLngs(route);
+
+            if (additionalRoute) {
+                routeLatLngs = routeLatLngs.concat(additionalRoute);
+            }
+
             dispatch(directionsFound(routeLatLngs));
             dispatch(getElevationsForLeg(routeLatLngs));
         });

@@ -3,6 +3,7 @@ import store from '../store';
 import { findRoute } from '../actionCreators/planner';
 import elevationStats from '../utils/statistics/elevation';
 import { calculateDistance } from '../utils/maps/polyline';
+import nearestLatLng from '../utils/maps/nearestLatLngToPoint';
 
 const defaultState = {
     name: '',
@@ -59,6 +60,47 @@ const addWaypointOrHighlight = (state, waypoint, highlight) => {
     });
 };
 
+const addLeg = (state, latLngs) => {
+    let updatedLegs = state.legs.concat([latLngs]);
+    const route = buildFullRoute(updatedLegs);
+    return Object.assign({}, state, {
+        legs: updatedLegs,
+        route,
+        routeStatistics: {
+            distance: calculateDistance(route)
+        }
+    });
+};
+
+const addHighlightRoute = (state, highlight) => {
+    const route = highlight.route.concat([]);
+    const start = route[0];
+    const end = route[route.length - 1];
+
+    if (state.routeStarted) {
+        if (nearestLatLng(state.currentPoint, start, end) === end) {
+            route.reverse();
+        }
+        store.dispatch(findRoute(state.currentPoint, route[0], route));
+        return Object.assign({}, state, {
+            currentPoint: end,
+            waypoints: state.waypoints.concat(end),
+            highlights: state.highlights.concat(highlight),
+            routeStarted: true,
+            routeSaved: false
+        });
+    }
+
+    return Object.assign({}, state, addLeg(state, route), {
+        waypoints: [start, end],
+        highlights: [undefined, highlight],
+        currentPoint: end,
+        routeStarted: true,
+        routeSaved: false
+    });
+
+};
+
 export default (state, action) => {
     if (!state) {
         return defaultState;
@@ -73,19 +115,15 @@ export default (state, action) => {
     }
 
     if (action.type === types.HIGHLIGHT_ADDED) {
+        if (action.highlight.route) {
+            return addHighlightRoute(state, action.highlight);
+        }
+
         return addWaypointOrHighlight(state, undefined, action.highlight);
     }
 
     if (action.type === types.DIRECTIONS_FOUND) {
-        let updatedLegs = state.legs.concat([action.latLngs]);
-        const route = buildFullRoute(updatedLegs);
-        return Object.assign({}, state, {
-            legs: updatedLegs,
-            route,
-            routeStatistics: {
-                distance: calculateDistance(route)
-            }
-        });
+        return addLeg(state, action.latLngs);
     }
 
     if (action.type === types.UNDO) {

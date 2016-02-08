@@ -6,7 +6,7 @@ module.exports = React.createClass({
         polyline: React.PropTypes.array,
         map: React.PropTypes.object,
         strokeColour: React.PropTypes.string,
-        strokeWeight: React.PropTypes.number
+        strokeWeight: React.PropTypes.string
     },
     getInitialState() {
         return {
