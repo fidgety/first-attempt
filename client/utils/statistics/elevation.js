@@ -4,7 +4,8 @@ export default (elevations, sampleDistance = 1000) => {
         descending: 0,
         flatish: 0,
         uphill: 0,
-        downhill: 0
+        downhill: 0,
+        elevations: []
     };
 
     if (elevations.length === 0) {
@@ -26,6 +27,8 @@ export default (elevations, sampleDistance = 1000) => {
                 stats.ascending += heightDifferentialAbs;
                 stats.uphill += sampleDistance;
             }
+
+            stats.elevations.push(currentValue);
             return currentValue;
         });
 

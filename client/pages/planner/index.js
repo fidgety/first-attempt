@@ -4,6 +4,7 @@ import TopBar from '../../components/topbar';
 import PlannerControls from '../../components/plannerControls';
 import Summary from '../../components/statistics/summary';
 import HighlightSummary from '../../components/highlightSummary';
+import Profile from '../../components/statistics/profile';
 import PlannerResumeRestart from '../../components/plannerResumeRestart';
 
 import { connect } from 'react-redux';
@@ -54,6 +55,9 @@ export default connect(select)(React.createClass({
                     downhill={this.props.elevationStatistics.downhill}
                     flatish={this.props.elevationStatistics.flatish}
                     distance={this.props.routeStatistics.distance}
+                />
+                <Profile
+                    elevationStatistics={this.props.elevationStatistics}
                 />
                 <HighlightSummary
                     selectedHighlight={this.props.selectedHighlight}

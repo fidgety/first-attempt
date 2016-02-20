@@ -1,0 +1,27 @@
+@import "breakpoints";
+
+.profile-chart {
+    position: absolute;
+    bottom: 50px;
+    left: 10px;
+    z-index: 9;
+    background: rgba(0, 0, 0, 0.5);
+    height: 60px;
+    width: calc(100% - 150px);
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    overflow: hidden;
+
+    canvas {
+        bottom: -5px;
+        position: absolute;
+        left: -5px;
+    }
+}
+
+@media (min-width: $x-small) {
+    .profile-chart {
+        bottom: 70px;
+        width: calc(100% - 180px);
+    }
+}

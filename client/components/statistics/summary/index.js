@@ -8,7 +8,8 @@ let options = {
     segmentShowStroke: false,
     percentageInnerCutout: 50,
     animationEasing: 'easeOutQuart',
-    animationSteps: 40
+    animationSteps: 40,
+    showTooltips: false
 };
 
 export default React.createClass({
