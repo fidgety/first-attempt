@@ -7,8 +7,7 @@ require('./style.scss');
 
 export default React.createClass({
     render() {
-        return <div>
-            <div className="top-bar">
+        return <div className="top-bar">
                 <div className="top-bar__logo">
                     <Logo/>
                 </div>
@@ -19,7 +18,6 @@ export default React.createClass({
                         photo={veloptuous.user.photo}
                     />
                 </div>
-            </div>
             <div className="top-bar__colours">
                 <ColourBar/>
             </div>

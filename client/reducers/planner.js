@@ -75,13 +75,16 @@ const addLeg = (state, latLngs) => {
 const addHighlightRoute = (state, highlight) => {
     const route = highlight.route.concat([]);
     const start = route[0];
-    const end = route[route.length - 1];
+    let end = route[route.length - 1];
 
     if (state.routeStarted) {
         if (nearestLatLng(state.currentPoint, start, end) === end) {
             route.reverse();
+            end = start;
         }
+
         store.dispatch(findRoute(state.currentPoint, route[0], route));
+
         return Object.assign({}, state, {
             currentPoint: end,
             waypoints: state.waypoints.concat(end),
@@ -92,9 +95,9 @@ const addHighlightRoute = (state, highlight) => {
     }
 
     return Object.assign({}, state, addLeg(state, route), {
+        currentPoint: end,
         waypoints: [start, end],
         highlights: [undefined, highlight],
-        currentPoint: end,
         routeStarted: true,
         routeSaved: false
     });
