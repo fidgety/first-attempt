@@ -18,7 +18,8 @@ const defaultState = {
     elevationStatistics: {
         uphill: 0,
         downhill: 0,
-        flatish: 0
+        flatish: 0,
+        elevations: []
     },
     routeStatistics: {
         distance: 0
