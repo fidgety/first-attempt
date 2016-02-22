@@ -33,7 +33,11 @@ export default connect(select)(React.createClass({
     render() {
         return (
             <div className="full-screen">
-                <TopBar/>
+                <TopBar
+                    loggedIn={veloptuous.user.loggedIn}
+                    username={veloptuous.user.username}
+                    photo={veloptuous.user.photo}
+                />
                 <PlannerControls
                     onUndo={() => this.props.dispatch(undo())}
                     onSave={() => {
@@ -41,6 +45,7 @@ export default connect(select)(React.createClass({
                         updateRouteDetails(routeName);
                         this.props.dispatch(saveRoute(routeName));
                     }}
+                    loggedIn={veloptuous.user.loggedIn}
                     routeSaved={this.props.routeSaved}
                     routeStarted={this.props.routeStarted}
                 />

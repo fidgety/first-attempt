@@ -13,9 +13,9 @@ export default React.createClass({
                 </div>
                 <div className="top-bar__user">
                     <User
-                        loggedIn={veloptuous.user.loggedIn}
-                        username={veloptuous.user.username}
-                        photo={veloptuous.user.photo}
+                        loggedIn={this.props.loggedIn}
+                        username={this.props.username}
+                        photo={this.props.photo}
                     />
                 </div>
             <div className="top-bar__colours">

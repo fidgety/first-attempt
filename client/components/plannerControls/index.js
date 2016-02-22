@@ -10,6 +10,14 @@ export default React.createClass({
         routeStarted: React.PropTypes.bool.isRequired
     },
     render() {
+        const onSave = () => {
+            if (this.props.loggedIn) {
+                return this.props.onSave();
+            }
+
+            alert('please login to save, dont worry, your progress will be saved');
+        };
+
         return <div className="planner-controls">
             <div className="planner-controls__undo">
                 <PlannerControl
@@ -18,7 +26,7 @@ export default React.createClass({
                     enabled={this.props.routeStarted}
                 />
                 <PlannerControl
-                    onClick={this.props.onSave}
+                    onClick={onSave}
                     text="save"
                     enabled={this.props.routeStarted && !this.props.routeSaved}
                 />
