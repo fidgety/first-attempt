@@ -1,4 +1,5 @@
 @import "constants";
+@import "breakpoints";
 
 body {
     background: #191919;
@@ -43,4 +44,55 @@ a:hover {
 .button:hover {
     background: #333;
     transition: $transition-all;
+}
+
+
+.ReactModal__Overlay {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    z-index: 50;
+    animation: fadein 0.3s;
+}
+
+.ReactModal__Content {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    color: white;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    border: none !important;
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    border-radius: 4px !important;
+    outline: none !important;
+    padding: 5% !important;
+    font-size: 20px;
+    width: 70% !important;
+    transform: translate(-50%, -50%) !important;
+    text-align: center;
+
+    p {
+        font-weight: 100;
+    }
+
+    h2 {
+        font-weight: 300;
+        margin-bottom: 20px;
+    }
+
+    .button {
+        margin-top: 30px;
+    }
+}
+
+@media (min-width: $xx-small) {
+    .ReactModal__Content {
+        width: auto !important;
+    }
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }

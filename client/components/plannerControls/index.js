@@ -1,5 +1,6 @@
 import React from 'react';
 import PlannerControl from '../plannerControl';
+import Modal from 'react-modal';
 
 require('./style.scss');
 
@@ -9,13 +10,25 @@ export default React.createClass({
         onSave: React.PropTypes.func.isRequired,
         routeStarted: React.PropTypes.bool.isRequired
     },
+    getInitialState() {
+        return {
+            showLoginMessage: false
+        }
+    },
+    closeModal() {
+        this.setState({
+            showLoginMessage: false
+        });
+    },
     render() {
         const onSave = () => {
             if (this.props.loggedIn) {
                 return this.props.onSave();
             }
 
-            alert('please login to save, dont worry, your progress will be saved');
+            this.setState({
+                showLoginMessage: true
+            });
         };
 
         return <div className="planner-controls">
@@ -31,6 +44,13 @@ export default React.createClass({
                     enabled={this.props.routeStarted && !this.props.routeSaved}
                 />
             </div>
+            <Modal
+                isOpen={this.state.showLoginMessage}
+            >
+                <h2>Please login/register to save</h2>
+                <p>Don't worry - your progress so far will be here when you get back!</p>
+                <div className="button" onClick={this.closeModal}>ok</div>
+            </Modal>
         </div>;
     }
 });
