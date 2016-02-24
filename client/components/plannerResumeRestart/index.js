@@ -1,7 +1,6 @@
 import React from 'react';
 import PlannerControl from '../plannerControl';
-
-require('./style.scss');
+import Modal from '../modal';
 
 export default React.createClass({
     propTypes: {},
@@ -19,16 +18,12 @@ export default React.createClass({
         this.close();
     },
     render() {
-        if (this.state.firstTime === false || this.state.firstTime && !this.props.routeStarted) {
-            return null;
-        }
+        const isOpen = this.state.firstTime === true && this.props.routeStarted;
 
-        return <div className="planner-resume-reset">
-            <div className="planner-resume-reset__question-holder">
-                <div className="planner-resume-reset__question">Hey! do you want to carry on with the last route, or start again?</div>
-                <div className="button" onClick={this.props.onReset}>reset</div>
-                <div className="button" onClick={this.close}>resume</div>
-            </div>
-        </div>;
+        return <Modal isOpen={isOpen}>
+            <p>Hey! do you want to carry on with the last route, or start again?</p>
+            <div className="button" onClick={this.props.onReset}>reset</div>
+            <div className="button" onClick={this.close}>resume</div>
+        </Modal>;
     }
 });
