@@ -1,6 +1,6 @@
 import React from 'react';
 import PlannerControl from '../plannerControl';
-import Modal from 'react-modal';
+import Modal from '../modal';
 
 require('./style.scss');
 
