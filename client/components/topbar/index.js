@@ -8,9 +8,9 @@ require('./style.scss');
 export default React.createClass({
     render() {
         return <div className="top-bar">
-                <div className="top-bar__logo">
+                <a href="/" className="top-bar__logo">
                     <Logo/>
-                </div>
+                </a>
                 <div className="top-bar__user">
                     <User
                         loggedIn={this.props.loggedIn}

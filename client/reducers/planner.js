@@ -16,6 +16,8 @@ const defaultState = {
     routeSaved: false,
     elevations: [],
     elevationStatistics: {
+        ascending: 0,
+        descending: 0,
         uphill: 0,
         downhill: 0,
         flatish: 0,

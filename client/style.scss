@@ -13,6 +13,7 @@ html, body, #app, .full-screen {
 
 a {
     color: white;
+    cursor: pointer;
     text-decoration: none;
     border: 1px solid transparent;
     transition: $transition-all;
