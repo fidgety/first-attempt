@@ -1,6 +1,10 @@
 import React from 'react';
 import RouteOverview from '../../components/maps/routeOverview';
 import TopBar from '../../components/topbar';
+import Profile from '../../components/statistics/profile2';
+import HighlightTiles from '../../components/highlightTiles';
+import RouteSplash from '../../components/routeSplash';
+import RouteCharts from '../../components/routeCharts';
 import { highlightSelected } from '../../actionCreators/highlights';
 
 import { connect } from 'react-redux';
@@ -11,38 +15,41 @@ const select = (state) => {
     return {
         route: state.planner.route,
         name: state.planner.name,
-        highlights: state.highlights.highlights
+        highlights: state.highlights.highlights,
+        elevationStatistics: state.planner.elevationStatistics,
+        routeStatistics: state.planner.routeStatistics
     };
 };
 
 export default connect(select)(React.createClass({
     render() {
-
-        const highlights = Object.keys(this.props.highlights).map((highlightName) => {
-            const highlight = this.props.highlights[highlightName];
-            return <div
-                className="route-highlight"
-                key={highlight.name}
-            >
-                <div className="route-highlight__name">{highlight.name}</div>
-                <img src={highlight.image}/>
-            </div>
-        });
-
         return (
             <div>
-                <TopBar/>
+                <TopBar
+                    loggedIn={veloptuous.user.loggedIn}
+                    username={veloptuous.user.username}
+                    photo={veloptuous.user.photo}
+                />
                 <section className="route-content">
-                    <div className="title">On the cusp of the White Peak</div>
-                    <div className="natural-english-summary">
-                        A route with <span className="highlights">3 highlights</span>, which should take you about <span className="time">3.2 hours</span>.
-                        There is <span className="cafe">1 café stop</span>, which you'll need - there <span className="climb">2,300 feet</span> of climbing!
-                    </div>
+                    <section className="header">
+                        <RouteSplash
+                            img="/images/gliding-club.jpg"
+                            title="On the cusp of the White Peak"
+                        />
+                        <RouteCharts
+                            routeStatistics={this.props.routeStatistics}
+                            elevationStatistics={this.props.elevationStatistics}
+                        />
+                        <Profile
+                            elevationStatistics={this.props.elevationStatistics}
+                        />
+                    </section>
                     <div className="description">
-                        The Peak District is made up of two very different sections - the White and Dark Peaks. One soft light limestone, the other brooding morrlands of millstone grit.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis, quam et dictum facilisis, sapien dui luctus metus, ac rhoncus arcu ante id sem. Quisque facilisis a dolor non blandit. Integer blandit pharetra dignissim. Ut nec libero metus. Phasellus dignissim, metus accumsan ullamcorper blandit, ipsum ex te
                     </div>
-
-                    {highlights}
+                    <HighlightTiles
+                        highlights={this.props.highlights}
+                    />
                     <div className="map-holder">
                         <RouteOverview
                             route={this.props.route}

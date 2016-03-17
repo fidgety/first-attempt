@@ -1,0 +1,36 @@
+@import "constants";
+@import "colours";
+@import "breakpoints";
+
+.highlight-tiles {
+    width: 100%;
+    overflow: hidden;
+}
+
+.highlight-tile {
+    width: 100%;
+    position: relative;
+
+    img {
+        width: 100%;
+        text-align: center;
+    }
+
+    .highlight-tile__name {
+        position: absolute;
+        bottom: 0;
+        width: 90%;
+        padding: 5%;
+        background: rgba(0, 0, 0, 0.4);
+        color: white;
+        font-size: 60px;
+        font-weight: 900;
+    }
+}
+
+@media (min-width: $xx-small) {
+    .highlight-tile {
+        float: left;
+        width: 50%;
+    }
+}

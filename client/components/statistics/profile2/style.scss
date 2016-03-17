@@ -1,0 +1,22 @@
+@import "breakpoints";
+
+.profile-chart2 {
+    position: absolute;
+    z-index: 9;
+    left: -5px;
+    bottom: 0;
+    height: 120px;
+    overflow: hidden;
+    width: calc(100% + 10px);
+
+    canvas {
+        bottom: -5px;
+        position: absolute;
+    }
+}
+
+@media (min-width: $x-small) {
+    .profile-chart2 {
+        width: calc(100% + 10px);
+    }
+}
