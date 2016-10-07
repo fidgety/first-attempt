@@ -1,0 +1,12 @@
+@import "constants";
+
+.save-dialog-button {
+    margin-top: 10px;
+    display: inline-block;
+    float: left;
+    width: 48%;
+
+    &:first-child {
+        margin-right: 2%;
+    }
+}

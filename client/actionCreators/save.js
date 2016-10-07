@@ -1,9 +1,22 @@
 import * as types from '../constants';
 import store from '../store';
 
-export const routeSaved = () => {
+export const openSaveDialog = () => {
     return {
-        type: types.ROUTE_SAVED
+        type: types.OPEN_SAVE_DIALOG
+    };
+};
+
+export const closeSaveDialog = () => {
+    return {
+        type: types.CLOSE_SAVE_DIALOG
+    };
+};
+
+export const routeSaved = (name) => {
+    return {
+        type: types.ROUTE_SAVED,
+        name
     };
 };
 

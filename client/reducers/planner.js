@@ -14,6 +14,7 @@ const defaultState = {
     highlights: [],
     routeStarted: false,
     routeSaved: false,
+    saveDialogOpen: false,
     elevations: [],
     elevationStatistics: {
         ascending: 0,
@@ -116,6 +117,18 @@ export default (state, action) => {
         return defaultState;
     }
 
+    if (action.type === types.OPEN_SAVE_DIALOG) {
+        return Object.assign({}, state, {
+            saveDialogOpen: true
+        });
+    }
+
+    if (action.type === types.CLOSE_SAVE_DIALOG) {
+        return Object.assign({}, state, {
+            saveDialogOpen: false
+        });
+    }
+
     if (action.type === types.LAT_LNG_SELECTED) {
         return addWaypointOrHighlight(state, action.latLng);
     }
@@ -168,7 +181,9 @@ export default (state, action) => {
 
     if (action.type === types.ROUTE_SAVED) {
         return Object.assign({}, state, {
-            routeSaved: true
+            routeSaved: true,
+            saveDialogOpen: false,
+            name: action.name
         });
     }
 

@@ -34,7 +34,7 @@ export default connect(select)(React.createClass({
                     <section className="header">
                         <RouteSplash
                             img="/images/gliding-club.jpg"
-                            title="On the cusp of the White Peak"
+                            title={this.props.name}
                         />
                         <RouteCharts
                             routeStatistics={this.props.routeStatistics}
