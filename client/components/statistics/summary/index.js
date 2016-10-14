@@ -17,7 +17,7 @@ export default React.createClass({
     getInitialState() {
         return {
             distance: 0
-        }
+        };
     },
     componentWillMount() {
         this.tweenState('distance', {

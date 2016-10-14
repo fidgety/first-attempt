@@ -13,8 +13,6 @@ const defaultState = {
     route: [],
     highlights: [],
     routeStarted: false,
-    routeSaved: false,
-    saveDialogOpen: false,
     elevations: [],
     elevationStatistics: {
         ascending: 0,
@@ -59,8 +57,7 @@ const addWaypointOrHighlight = (state, waypoint, highlight) => {
         currentPoint: latLng,
         waypoints,
         highlights,
-        routeStarted: waypoints.length !== 0,
-        routeSaved: false
+        routeStarted: waypoints.length !== 0
     });
 };
 
@@ -93,17 +90,14 @@ const addHighlightRoute = (state, highlight) => {
             currentPoint: end,
             waypoints: state.waypoints.concat(end),
             highlights: state.highlights.concat(highlight),
-            routeStarted: true,
-            routeSaved: false
+            routeStarted: true
         });
     }
 
     return Object.assign({}, state, addLeg(state, route), {
         currentPoint: end,
         waypoints: [start, end],
-        highlights: [undefined, highlight],
-        routeStarted: true,
-        routeSaved: false
+        highlights: [undefined, highlight]
     });
 
 };
@@ -115,18 +109,6 @@ export default (state, action) => {
 
     if (action.type === types.RESET) {
         return defaultState;
-    }
-
-    if (action.type === types.OPEN_SAVE_DIALOG) {
-        return Object.assign({}, state, {
-            saveDialogOpen: true
-        });
-    }
-
-    if (action.type === types.CLOSE_SAVE_DIALOG) {
-        return Object.assign({}, state, {
-            saveDialogOpen: false
-        });
     }
 
     if (action.type === types.LAT_LNG_SELECTED) {
@@ -161,7 +143,6 @@ export default (state, action) => {
             legs,
             route,
             routeStarted: waypoints.length !== 0,
-            routeSaved: false,
             elevations,
             elevationStatistics: calculateElevationStatistics(elevations),
             routeStatistics: {
@@ -176,14 +157,6 @@ export default (state, action) => {
         return Object.assign({}, state, {
             elevations: elevations,
             elevationStatistics: calculateElevationStatistics(elevations)
-        });
-    }
-
-    if (action.type === types.ROUTE_SAVED) {
-        return Object.assign({}, state, {
-            routeSaved: true,
-            saveDialogOpen: false,
-            name: action.name
         });
     }
 

@@ -6,11 +6,9 @@ import Summary from '../../components/statistics/summary';
 import HighlightSummary from '../../components/highlightSummary';
 import Profile from '../../components/statistics/profile';
 import PlannerResumeRestart from '../../components/plannerResumeRestart';
-import SaveDialog from '../../components/saveDialog';
 
 import { connect } from 'react-redux';
 import { findNearestLatLng, undo, reset } from '../../actionCreators/planner';
-import { saveRoute, updateRouteDetails, openSaveDialog, closeSaveDialog } from '../../actionCreators/save';
 import { highlightSelected, highlightClosed, highlightAdded } from '../../actionCreators/highlights';
 
 import { encode } from '../../utils/maps/polyline';
@@ -22,12 +20,10 @@ const select = (state) => {
         waypoints: state.planner.waypoints,
         route: state.planner.route,
         routeStarted: state.planner.routeStarted,
-        routeSaved: state.planner.routeSaved,
         elevationStatistics: state.planner.elevationStatistics,
         routeStatistics: state.planner.routeStatistics,
         highlights: state.highlights.highlights,
-        selectedHighlight: state.highlights.selectedHighlight,
-        saveDialogOpen: state.planner.saveDialogOpen
+        selectedHighlight: state.highlights.selectedHighlight
     };
 };
 
@@ -42,11 +38,7 @@ export default connect(select)(React.createClass({
                 />
                 <PlannerControls
                     onUndo={() => this.props.dispatch(undo())}
-                    onSave={() => {
-                        this.props.dispatch(openSaveDialog());
-                    }}
                     loggedIn={veloptuous.user.loggedIn}
-                    routeSaved={this.props.routeSaved}
                     routeStarted={this.props.routeStarted}
                 />
                 <PlannerResumeRestart
@@ -63,15 +55,6 @@ export default connect(select)(React.createClass({
                 />
                 <Profile
                     elevationStatistics={this.props.elevationStatistics}
-                />
-                <SaveDialog
-                    isOpen={this.props.saveDialogOpen}
-                    onSave={(name) => {
-                        this.props.dispatch(saveRoute(name));
-                    }}
-                    onClose={() => {
-                        this.props.dispatch(closeSaveDialog());
-                    }}
                 />
                 <HighlightSummary
                     selectedHighlight={this.props.selectedHighlight}

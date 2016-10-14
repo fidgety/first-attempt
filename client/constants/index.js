@@ -7,10 +7,6 @@ export const ELEVATIONS_UPDATED = 'ELEVATIONS_UPDATED';
 // user controls
 export const UNDO = 'UNDO';
 export const RESET = 'RESET';
-export const ROUTE_SAVED = 'ROUTE_SAVED';
-export const OPEN_SAVE_DIALOG = 'OPEN_SAVE_DIALOG';
-export const ROUTE_DETAILS_UPDATED = 'ROUTE_DETAILS_UPDATED';
-export const CLOSE_SAVE_DIALOG = 'CLOSE_SAVE_DIALOG';
 
 // highlights
 export const HIGHLIGHT_SELECTED = 'HIGHLIGHT_SELECTED';
